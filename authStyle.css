@@ -11,6 +11,7 @@ body{
 	background-image: url("bg.svg");
   background-repeat: no-repeat;
   background-position: fixed;
+  background-size: fill;
 
 }
 a:hover {
