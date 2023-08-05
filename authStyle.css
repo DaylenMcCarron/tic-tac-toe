@@ -9,10 +9,9 @@ body{
 	line-height: 1.7;
 	color: #ffffff;
 	background-image: url("bg.svg");
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-position: fixed;
   background-size: fill;
-	width:100%;
 
 }
 a:hover {
