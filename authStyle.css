@@ -12,6 +12,7 @@ body{
   background-repeat: no-repeat;
   background-position: fixed;
   background-size: fill;
+	width:100%;
 
 }
 a:hover {
