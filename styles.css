@@ -1,0 +1,124 @@
+body{
+    background-color: #273155;;
+}
+
+.play{
+    width: 471px;
+    height: 587.903px;
+    flex-shrink: 0;
+    border-radius: 35.967px;
+    background: #1D2338;
+    box-shadow: 0px 3.425454616546631px 16.270910263061523px 15.414546012878418px rgba(0, 0, 0, 0.17);
+    display: grid;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.cell1{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-right: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell2{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-right: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell3{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-bottom: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell4{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-top: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell5{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-top: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell6{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-top: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell7{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-top: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell8{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-top: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.cell9{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    border-top: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    background: #1D2338;
+}
+
+.playButton{
+    width: 299.727px;
+    height: 80.498px;
+    flex-shrink: 0;
+    border-radius: 17.127px;
+    background: #273155;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 33.398px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: auto;
+}
