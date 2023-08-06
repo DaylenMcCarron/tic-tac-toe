@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+html{
+  font-size: 62.5%;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300;
+	line-height: 1.7;
+	color: #ffffff;
+	background-image: url("bg.svg");
+  background-repeat: repeat-x;
+  background-position: fixed;
+  background-size: fill;
+
+}
+a:hover {
+	text-decoration: none;
+}
+.link {
+  color: #ffeba7;
+}
+.link:hover {
+  color: #c4c3ca;
+}
+p {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+.logo{
+width:7.5rem;
+height: 7.5rem;
+padding-top: 0;
+}
+.tit{
+  display: inline-flex;
+  gap:2rem;
+}
+.top{
+  font-size: 7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+  color: #FFF;
+  text-shadow: 0px 4px 4px #000;
+  font-family: Montserrat;
+  font-size: 7.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 2.5rem;
+  text-shadow: 0rem .4rem 1.9rem rgba(110, 156, 254, 0.295);
+}
+
+/* Login- Signup*/
+h6 span{
+  color: #EFEFEF;
+  text-shadow: 0rem .4rem 1.9rem rgba(254, 230, 110, 0.322);
+  font-family: Poppins;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.section{
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.full-height{
+  min-height: 100vh;
+}
+.head{
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 33.6rem;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #0D1226 27.60%, rgba(7, 22, 79, 0.51) 63.02%, rgba(28, 35, 57, 0.00) 100%);
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked){
+display: none;
+}
+
+.checkbox:checked + label,
+.checkbox:not(:checked) + label{
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 6rem;
+  height: 1.6rem;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  cursor:pointer;
+  background-color: #737098;
+}
+
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before{
+  position: relative;
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  color: #ffffff;
+  background-color: #365695;
+  font-family: 'unicons';
+  content: '\eb4f';
+  z-index: 20;
+  top: -1.0rem;
+  left: -1.0rem;
+  line-height: 3.6rem;
+  text-align: center;
+  font-size: 2.4rem;
+  transition: all 0.5s ease;
+}
+.checkbox:checked + label:before {
+  transform: translateX(4.4rem) rotate(-270deg);
+  background-color: #9E4969;
+}
+.card-3d-wrap {
+  position:relative;
+  width: 48rem;
+  max-width: 500px;
+  height: 40rem;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  perspective: 90.0rem;
+  margin-top: 6.0rem;
+}
+.card-3d-wrapper {
+  width: 44rem;
+  height: 40rem;
+  position: fixed;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: all 700ms ease-out; 
+  border-radius: 4rem;
+}
+.card-front, .card-back {
+  width: 45.0rem;
+  height: 45rem;
+  border-radius: 3rem;
+  position:fixed;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.checkbox:checked ~ .card-3d-wrap .card-3d-wrapper{
+  transform: rotateY(180deg);
+}
+.center-wrap{
+  position: absolute;
+  height: 44rem;
+  width: 50rem;
+  padding-top: 4.8rem;
+  top: 18rem;
+  transform: translate3d(0, -50%, 3.5rem) perspective(10.0rem);
+  z-index: 20;
+  display: block;
+  background: radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(179, 121, 223, 0.20) 0%, rgba(204, 88, 84, 0.02) 77.08%, rgba(179, 121, 223, 0.20) 100%);
+  backdrop-filter: blur(4.0rem);
+  -webkit-backdrop-filter: blur(2.0rem);
+  border-radius: 5.0rem;
+}
+.form-group{ 
+  position: relative;
+  display: block;
+  color: #ffffff;
+  padding-left: 6.0rem;
+  padding-right: 6.0rem;
+}
+.form-style {
+  padding: 1.0rem 2.0rem;
+  padding-left: 5.5rem;
+  height: 5.0rem;
+  width: 95%;
+  color: #ffffff;
+  font-family: Poppins;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 1.5rem;
+  background:linear-gradient(135deg, rgba(68, 66, 117, 0.445), rgba(252, 195, 195, 0));
+  backdrop-filter: blur(2.0rem);
+  transition: all 200ms linear;
+  box-shadow: 0 .4rem .8rem 0 rgba(72, 63, 63, 0.2);
+}
+.loginForm{
+  padding-left: 6.0rem;
+  padding-right: 6.0rem;
+  padding-bottom: 2.5rem;
+}
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 .4rem .8rem 0 rgba(21,21,21,.2);
+}
+.input-icon {
+  position: absolute;
+  top: 0;
+  left: 8.5rem;
+  height: 4.8rem;
+  font-size: 2.4rem;
+  line-height: 4.8rem;
+  text-align: left;
+  -webkit-transition: all 200ms linear;
+   transition: all 200ms linear;
+}
+.btn{  
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 1.5rem;
+  -webkit-transition : all 200ms linear;
+  transition: all 200ms linear;
+  padding: 1.0rem;
+  padding-left: 10rem ;
+  letter-spacing: .1rem;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  align-items: center;
+  color: #ffffff;
+  width: 25.0rem;
+  height: 5.0rem;
+  border-radius: 2.0rem;
+  background: linear-gradient(180deg, #4F64B0 0%, #273155 100%);
+}
+.signup{
+  background: linear-gradient(180deg, #C3526E 0%, #212654 100%);
+  padding-left: 9.45rem;
+}
+.btn:hover{  
+  background-color: #a1b9ec;
+  color: #182d56;
+  box-shadow: 0 .8rem 2.4rem 0 rgba(16,39,112,.2);
+}
+
