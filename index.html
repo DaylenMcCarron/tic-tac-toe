@@ -10,10 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
   <script src="main.js" defer></script>
   <title>Document</title>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
+</head>
+<body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import { getDatabase , ref, set } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+import { getDatabase , ref, set, onDisconnect, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -32,19 +34,97 @@ const firebaseConfig = {
   measurementId: "G-EC7HY7EJHM"
 };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase();
-    const analytics = getAnalytics(app);
-    const auth = getAuth();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase();
+const analytics = getAnalytics(app);
+const auth = getAuth();
 
 
-  
-    </script>
-</head>
-<body>
-    
-  <script src="./firebaseApp.js"></script>
+//Player Variables
+let playerId;
+let playerRef;
+let playerNo;
+
+    //Event Listeners
+    document.getElementById("saveGuest").addEventListener("click", saveGuestName);
+    document.getElementById("createRoom").addEventListener("click", createRoom);
+
+    function createRoom() {
+        playerNo = "1";
+        joinedRoom();
+    }
+
+
+
+    function joinedRoom() { 
+
+      function initGame() {
+        const allPlayerRef = ref(database,`players`);
+
+        onValue(allPlayerRef, (snapshot) => {
+          // fires when change occurs
+        })
+        onChildAdded(allPlayerRef,(snapshot) => {
+          const addedPlayer = snapshot.val();
+          updatePlayer(addedPlayer);
+
+        })
+      }
+
+      function updatePlayer(addedPlayer) {
+        if(addedPlayer.id == playerId) {
+          document.getElementById("Player1").innerHTML = addedPlayer.name;
+        } else {
+          document.getElementById("Player2").innerHTML = addedPlayer.name
+        }
+      }
+
+
+      onAuthStateChanged(auth , (user) => {
+          console.log(user)
+          if (user) {
+            //loggedin
+            playerId = user.uid;
+            playerRef = ref(database, `players/${playerId}`);
+
+            set(playerRef,{
+                id: playerId,
+                name: username,
+                player: playerNo,
+                    pos: ["1","2","0","0","1"],
+                })
+
+                onDisconnect(playerRef).remove();
+
+                initGame();
+
+            } else {
+                //loggedout
+            }
+        });
+
+        signInAnonymously(auth).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorCode, errorMessage)
+        });
+    };
+
+    //USER INFO
+    let username = "";
+    let pos = [];
+    let playerNum = "";
+
+    function saveGuestName() {
+    console.log('saving guest');
+    if (username == "") {
+        username = document.getElementById('guestName').value;
+        document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
+    }
+  }
+  </script>
   <div class="left-screen-options lso">
     <p>Hello World</p>
     <div id="mode">
@@ -64,19 +144,21 @@ const firebaseConfig = {
         <div>
           <p>Guest:</p>
           <input type="text" placeholder="Name" id="guestName">
-          <button onclick="saveGuestName()">Ok</button>
+          <button id="saveGuest">Ok</button>
           <p id="displayUsername">Bruh</p>
 
         </div>
         <div id="connect-room">
             <p>Connect to a room card</p>
-            <button onclick="joinedRoom()">Create Room</button>
+            <button id="createRoom">Create Room</button>
             <input type="text" placeholder="Room Code">
             <button>Join Room</button>
             <button>Random</button>
       </div>
     </div>
   </div>
+  <p id="Player1">Player 1</p>
+  <p id="Player2">Player 2</p>
   <div class="board" id="board">
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
