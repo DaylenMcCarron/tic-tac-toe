@@ -8,13 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
-  <script src="main.js" defer></script>
+  <script src="main.js" type="module" defer></script>
   <title>Document</title>
 </head>
 <body>
   <script type="module">
+    import {xArray, yArray} from './main.js'
     // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import { getDatabase , ref, set, onDisconnect, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
@@ -92,8 +93,9 @@ let playerNo;
                 id: playerId,
                 name: username,
                 player: playerNo,
-                    pos: ["1","2","0","0","1"],
-                })
+                    pos: xArray,
+                  })
+                  console.log("Brother" + xArray)
 
                 onDisconnect(playerRef).remove();
 
@@ -160,15 +162,15 @@ let playerNo;
   <p id="Player1">Player 1</p>
   <p id="Player2">Player 2</p>
   <div class="board" id="board">
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
+    <div class="cell" id="1"data-cell>1</div>
+    <div class="cell" id="2"data-cell>2</div>
+    <div class="cell" id="3"data-cell>3</div>
+    <div class="cell" id="4"data-cell>4</div>
+    <div class="cell" id="5"data-cell>5</div>
+    <div class="cell" id="6"data-cell>6</div>
+    <div class="cell" id="7"data-cell>7</div>
+    <div class="cell" id="8"data-cell>8</div>
+    <div class="cell" id="9"data-cell>9</div>
   </div>
   <div class="winning-message" id="winningMessage">
     <div data-winning-message-text></div>

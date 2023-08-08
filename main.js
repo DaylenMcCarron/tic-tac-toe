@@ -1,3 +1,5 @@
+let xArray = ["default"];
+let yArray = ["default"];
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const WINNING_COMBINATIONS = [
@@ -15,6 +17,9 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
+
+document.getElementById("createRoom").addEventListener("click", startGame);
+
 let circleTurn
 
 startGame()
@@ -36,6 +41,7 @@ function startGame() {
 function handleClick(e) {
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+  storeArray(cell, currentClass)
   placeMark(cell, currentClass)
   if (checkWin(currentClass)) {
     endGame(false)
@@ -47,6 +53,16 @@ function handleClick(e) {
   }
 }
 
+function storeArray(cell, currentClass) {
+  if (currentClass == X_CLASS) {
+    xArray.push(cell.innerHTML);
+  } else {
+    yArray.push(cell.innerHTML);
+  }
+  console.log(xArray)
+  console.log(yArray)
+}
+
 function endGame(draw) {
   if (draw) {
     winningMessageTextElement.innerText = 'Draw!'
@@ -54,6 +70,8 @@ function endGame(draw) {
     winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
   }
   winningMessageElement.classList.add('show')
+  xArray = [];
+  yArray = [];
 }
 
 function isDraw() {
@@ -87,3 +105,5 @@ function checkWin(currentClass) {
     })
   })
 }
+
+export {xArray, yArray};

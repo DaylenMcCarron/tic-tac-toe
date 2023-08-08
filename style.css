@@ -122,6 +122,10 @@ padding:3rem;
 transition: 500ms;
 }
 
+.cell {
+  color: transparent;
+}
+
   /* Left screen options styling */
 
   .lso {
