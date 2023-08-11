@@ -19,11 +19,36 @@ const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 
-document.getElementById("random").addEventListener("click", startGame);
+document.getElementById("playButton").addEventListener("click", startGame);
+document.getElementById("quitButton").addEventListener("click", beforeGame);
 
 let circleTurn
 
+let test
+
 restartButton.addEventListener('click', startGame)
+
+beforeGame()
+
+function beforeGame() {
+  cellElements.forEach(cell => {
+    cell.classList.remove(X_CLASS)
+    cell.classList.remove(CIRCLE_CLASS)
+  })
+  const cell9 = document.getElementById("9")
+  const cell8 = document.getElementById("8")
+  const cell5 = document.getElementById("5")
+  const cell3 = document.getElementById("3")
+  const cell2 = document.getElementById("2")
+  const cell1 = document.getElementById("1")
+  cell9.classList.add(CIRCLE_CLASS)
+  cell8.classList.add(X_CLASS)
+  cell5.classList.add(CIRCLE_CLASS)
+  cell3.classList.add(X_CLASS)
+  cell2.classList.add(CIRCLE_CLASS)
+  cell1.classList.add(X_CLASS)
+  winningMessageElement.classList.remove('show')
+}
 
 function startGame() {
   xArray = [];
@@ -115,16 +140,6 @@ function checkWin(currentClass) {
   })
 }
 
-function play(){
-  xArray = [];
-  yArray = [];
-  circleTurn = false
-  cellElements.forEach(cell => {
-    cell.classList.remove(X_CLASS)
-    cell.classList.remove(CIRCLE_CLASS)
-    cell.removeEventListener('click', handleClick)
-    cell.addEventListener('click', handleClick, { once: true })
-  })
-}
+
 
 export {xArray, yArray, clicked, clickedFalse, circleTurn};

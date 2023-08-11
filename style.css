@@ -132,7 +132,7 @@ transition: 500ms;
     color: white
   }
 
-  .playButton{
+  #playButton{
     width: 299.727px;
     height: 80.498px;
     flex-shrink: 0;
