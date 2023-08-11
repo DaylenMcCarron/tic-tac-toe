@@ -13,7 +13,7 @@
 </head>
 <body>
   <script type="module">
-    import {xArray, yArray} from './main.js'
+    import {xArray, yArray, clicked, clickedFalse, circleTurn} from './main.js'
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import { getDatabase , ref, set, onDisconnect, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
@@ -45,65 +45,52 @@ const auth = getAuth();
 //Player Variables
 let playerId;
 let playerRef;
-let playerNo;
+let playerNo = 0;
+let G_RoomId;
+let isCircle;
+
+
+//USER INFO
+let username = "";
+let pos = [];
+let playerNum = "";
+
 
     //Event Listeners
-    document.getElementById("saveGuest").addEventListener("click", saveGuestName);
+    document.getElementById("createGuest").addEventListener("click", createGuest);
     document.getElementById("createRoom").addEventListener("click", createRoom);
 
-    function createRoom() {
-        playerNo = "1";
-        joinedRoom();
+  
+  function saveGuestName() {
+    console.log('saving guest');
+    if (username == "") {
+        username = document.getElementById('guestName').value;
+        document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
     }
+  }
+  function createGuest() {
+    saveGuestName();
+    onAuthStateChanged(auth , (user) => {
+      console.log(user)
+        if (user) {
+          //loggedin
+          playerId = user.uid;
+          playerRef = ref(database, `players/${playerId}`);
 
+          const playerInfo = {
+            // info of user
+            id: playerId,
+            name: username,       
+          }
+          console.log(playerNo)
+          set (playerRef,
+            playerInfo
+          )
+          onDisconnect(playerRef).remove();
 
-
-    function joinedRoom() { 
-
-      function initGame() {
-        const allPlayerRef = ref(database,`players`);
-
-        onValue(allPlayerRef, (snapshot) => {
-          // fires when change occurs
-        })
-        onChildAdded(allPlayerRef,(snapshot) => {
-          const addedPlayer = snapshot.val();
-          updatePlayer(addedPlayer);
-
-        })
-      }
-
-      function updatePlayer(addedPlayer) {
-        if(addedPlayer.id == playerId) {
-          document.getElementById("Player1").innerHTML = addedPlayer.name;
         } else {
-          document.getElementById("Player2").innerHTML = addedPlayer.name
+          //loggedout
         }
-      }
-
-
-      onAuthStateChanged(auth , (user) => {
-          console.log(user)
-          if (user) {
-            //loggedin
-            playerId = user.uid;
-            playerRef = ref(database, `players/${playerId}`);
-
-            set(playerRef,{
-                id: playerId,
-                name: username,
-                player: playerNo,
-                    pos: xArray,
-                  })
-                  console.log("Brother" + xArray)
-
-                onDisconnect(playerRef).remove();
-
-                initGame();
-
-            } else {
-                //loggedout
-            }
         });
 
         signInAnonymously(auth).catch((error) => {
@@ -112,20 +99,161 @@ let playerNo;
 
         console.log(errorCode, errorMessage)
         });
+  }
+
+    function createRoom() {
+        const allRoomRef = ref(database, `rooms`);
+
+        onAuthStateChanged(auth , (user) => {
+          console.log(user + "First Auth")
+          if (user) {
+
+            //In room
+            const roomId = "room_" + Math.floor(Math.random() * 100);
+            let roomRef = ref(database,`rooms/${roomId}`);
+            G_RoomId = roomId;
+            joinedRoom();
+           
+
+            // add room data to firebase
+            set(roomRef, {
+              player1: {
+              id: user.uid,
+              name: username, 
+            },
+              posX: xArray,
+            })
+            
+            onDisconnect(roomRef).remove();
+
+            } else {
+                //loggedout
+                console.log("User not authenticated.");
+            }
+        });
+        
+        
+        
+    }
+
+    const joinRoomBtn = document.getElementById("joinRoomBtn");
+    joinRoomBtn.addEventListener("click", () => {
+      onAuthStateChanged(auth , (user) => {
+          console.log(user + "First Auth")
+          if (user) {
+
+            //In room
+            const roomId = "room_" + document.getElementById("roomCode").value;
+            let player2Ref = ref(database,`rooms/${roomId}/player2`);
+            let posRef = ref(database,`rooms/${roomId}/posY`);
+            G_RoomId = roomId;
+
+            // add room data to firebase
+            set(player2Ref,{
+              id: user.uid,
+              name: username, 
+            })
+            set(posRef, yArray)
+            
+            onDisconnect(player2Ref).remove();
+            onDisconnect(posRef).remove();
+
+
+            } else {
+                //loggedout
+                console.log("User not authenticated.");
+            }
+            joinedRoom();
+        });
+    })
+
+    function updatePlayerYPos() {
+      onAuthStateChanged(auth , (user) => {
+          if (user) {
+            //In room
+            let posRef = ref(database,`rooms/${G_RoomId}/posY`);
+
+            // add position data to room
+            set(posRef, yArray)
+            onDisconnect(posRef).remove();
+            } else {
+                //loggedout
+                console.log("User not authenticated.");
+            }
+        });
+    }
+
+    function updatePlayerXPos() {
+      onAuthStateChanged(auth , (user) => {
+          if (user) {
+            //In room
+            let posRef = ref(database,`rooms/${G_RoomId}/posX`);
+
+            // add position data to room
+            set(posRef, xArray)
+            onDisconnect(posRef).remove();
+            } else {
+                //loggedout
+                console.log("User not authenticated.");
+            }
+        });
+    }
+
+
+
+    function joinedRoom() { 
+
+      
+      function initGame() {
+        const allPlayerRef = ref(database,`rooms/${G_RoomId}`);
+        console.log(allPlayerRef + "checking")
+
+        onValue(allPlayerRef, (snapshot) => {
+          // fires when change occurs
+          const addedPlayer = snapshot.val();
+          updatePlayer(addedPlayer);
+        })
+        onChildAdded(allPlayerRef,(snapshot) => {
+        })
+      }
+
+      function updatePlayer(addedPlayer) {
+        console.log(addedPlayer)
+        document.getElementById("Player1").innerHTML = addedPlayer.player1.name;
+        document.getElementById("Player2").innerHTML = addedPlayer.player2.name;
+        
+      }
+
+        signInAnonymously(auth).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorCode, errorMessage)
+        });
+
+        initGame();
     };
 
-    //USER INFO
-    let username = "";
-    let pos = [];
-    let playerNum = "";
+    
+    
 
-    function saveGuestName() {
-    console.log('saving guest');
-    if (username == "") {
-        username = document.getElementById('guestName').value;
-        document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
+
+  //run update every 1 second
+  setInterval(update, 1000);
+  function update() {
+    if (clicked == "t") {
+      clickedFalse();
+      console.log(clicked);
+      joinedRoom();
+      if (isCircle) {
+        updatePlayerYPos();
+            } else {
+        updatePlayerXPos();
+      }
     }
   }
+
+
   </script>
   <div class="left-screen-options lso">
     <p>Hello World</p>
@@ -146,16 +274,16 @@ let playerNo;
         <div>
           <p>Guest:</p>
           <input type="text" placeholder="Name" id="guestName">
-          <button id="saveGuest">Ok</button>
+          <button id="createGuest">Ok</button>
           <p id="displayUsername">Bruh</p>
 
         </div>
         <div id="connect-room">
             <p>Connect to a room card</p>
             <button id="createRoom">Create Room</button>
-            <input type="text" placeholder="Room Code">
-            <button>Join Room</button>
-            <button>Random</button>
+            <input type="text" placeholder="Room Code" id="roomCode">
+            <button id="joinRoomBtn">Join Room</button>
+            <button id="random">Random</button>
       </div>
     </div>
   </div>

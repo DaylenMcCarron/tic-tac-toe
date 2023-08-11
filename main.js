@@ -1,5 +1,6 @@
 let xArray = ["default"];
 let yArray = ["default"];
+let clicked = "f";
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const WINNING_COMBINATIONS = [
@@ -18,15 +19,15 @@ const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 
-document.getElementById("createRoom").addEventListener("click", startGame);
+document.getElementById("random").addEventListener("click", startGame);
 
 let circleTurn
-
-startGame()
 
 restartButton.addEventListener('click', startGame)
 
 function startGame() {
+  xArray = [];
+  yArray = [];
   circleTurn = false
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
@@ -39,6 +40,7 @@ function startGame() {
 }
 
 function handleClick(e) {
+  clicked = "t";
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
   storeArray(cell, currentClass)
@@ -51,6 +53,13 @@ function handleClick(e) {
     swapTurns()
     setBoardHoverClass()
   }
+}
+
+function clickedFalse() {
+  clicked = "f";
+
+  
+  console.log("executed ClickedFalse");
 }
 
 function storeArray(cell, currentClass) {
@@ -106,4 +115,5 @@ function checkWin(currentClass) {
   })
 }
 
-export {xArray, yArray};
+
+export {xArray, yArray, clicked, clickedFalse, circleTurn};
