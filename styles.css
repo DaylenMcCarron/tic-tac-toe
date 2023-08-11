@@ -21,91 +21,59 @@ body{
     align-items: center;
 }
 
-.cell1{
+.cell1, .cell2, .cell3, .cell4, .cell5, .cell6, .cell7, .cell8, .cell9{
     width: 143.869px;
     height: 143.869px;
     flex-shrink: 0;
-    border-right: 1px solid #B3B3B3;
-    border-bottom: 1px solid #B3B3B3;
     background: #1D2338;
+    border-color: #B3B3B3;
+    border-style: solid;
 }
 
 .cell2{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-right: 1px solid #B3B3B3;
-    border-bottom: 1px solid #B3B3B3;
-    border-left: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-right: 1px ;
+    border-bottom: 1px ;
+    border-left: 1px ;
 }
 
 .cell3{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-bottom: 1px solid #B3B3B3;
-    border-left: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-bottom: 1px ;
+    border-left: 1px ;
 }
 
 .cell4{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-top: 1px solid #B3B3B3;
-    border-bottom: 1px solid #B3B3B3;
-    border-right: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-top: 1px ;
+    border-bottom: 1px ;
+    border-right: 1px ;
 }
 
 .cell5{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-top: 1px solid #B3B3B3;
-    border-bottom: 1px solid #B3B3B3;
-    border-right: 1px solid #B3B3B3;
-    border-left: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-top: 1px ;
+    border-bottom: 1px;
+    border-right: 1px;
+    border-left: 1px;
 }
 
 .cell6{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-top: 1px solid #B3B3B3;
-    border-bottom: 1px solid #B3B3B3;
-    border-left: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 1px;
 }
 
 .cell7{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-top: 1px solid #B3B3B3;
-    border-right: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-top: 1px;
+    border-right: 1px;
 }
 
 .cell8{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-top: 1px solid #B3B3B3;
-    border-left: 1px solid #B3B3B3;
-    border-right: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-top: 1px ;
+    border-left: 1px ;
+    border-right: 1px ;
 }
 
 .cell9{
-    width: 143.869px;
-    height: 143.869px;
-    flex-shrink: 0;
-    border-top: 1px solid #B3B3B3;
-    border-left: 1px solid #B3B3B3;
-    background: #1D2338;
+    border-top: 1px ;
+    border-left: 1px;
 }
 
 .playButton{
