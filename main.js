@@ -115,5 +115,16 @@ function checkWin(currentClass) {
   })
 }
 
+function play(){
+  xArray = [];
+  yArray = [];
+  circleTurn = false
+  cellElements.forEach(cell => {
+    cell.classList.remove(X_CLASS)
+    cell.classList.remove(CIRCLE_CLASS)
+    cell.removeEventListener('click', handleClick)
+    cell.addEventListener('click', handleClick, { once: true })
+  })
+}
 
 export {xArray, yArray, clicked, clickedFalse, circleTurn};
