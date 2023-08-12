@@ -13,14 +13,27 @@ body {
 }
 
 .board {
-  width: 100vw;
-  height: 100vh;
   display: grid;
-  justify-content: center;
+  justify-content: left;
   align-content: center;
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(3, auto);
+  position: relative;
+  margin-left: 100px;
+}
+
+.moveRight{
+  animation: board 2s ease-in-out forwards;
+}
+
+@keyframes board {
+  0%{
+    left: 0;
+  }
+  100%{
+    left: 500px;
+  }
 }
 
 .cell {
