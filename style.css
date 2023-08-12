@@ -14,13 +14,13 @@ body {
 
 .board {
   display: grid;
-  justify-content: left;
+  justify-content: right;
   align-content: center;
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(3, auto);
   position: relative;
-  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .moveRight{
@@ -29,10 +29,10 @@ body {
 
 @keyframes board {
   0%{
-    left: 0;
+    right: 0;
   }
   100%{
-    left: 500px;
+    right: 450px;
   }
 }
 

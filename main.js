@@ -23,14 +23,19 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-const btnMoveRight = document.querySelector(".play-btn")
+const playB = document.querySelector(".play-btn")
 const boardc = document.querySelector(".board")
+const quitB = document.querySelector(".quit-btn")
 
 document.getElementById("playButton").addEventListener("click", startGame);
 document.getElementById("quitButton").addEventListener("click", beforeGame);
 
-btnMoveRight.addEventListener('click', () => {
+playB.addEventListener('click', () => {
   boardc.classList.toggle("moveRight");
+});
+
+quitB.addEventListener('click', () => {
+  boardc.classList.remove("moveRight");
 });
 
 let circleTurn
@@ -60,6 +65,7 @@ function beforeGame() {
   cell2.classList.add(CIRCLE_CLASS)
   cell1.classList.add(X_CLASS)
   winningMessageElement.classList.remove('show')
+  document.getElementById("playButton").style.display = "";
 }
 
 function startGame() {
@@ -78,6 +84,7 @@ function startGame() {
   })
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
+  document.getElementById("playButton").style.display = "none";
 }
 
 function handleClick(e) {
