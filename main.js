@@ -24,8 +24,6 @@ document.getElementById("quitButton").addEventListener("click", beforeGame);
 
 let circleTurn
 
-let test
-
 restartButton.addEventListener('click', startGame)
 
 beforeGame()
@@ -34,6 +32,9 @@ function beforeGame() {
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(CIRCLE_CLASS)
+    cell.removeEventListener('click', handleClick)
+    board.classList.remove(X_CLASS)
+    board.classList.remove(CIRCLE_CLASS)
   })
   const cell9 = document.getElementById("9")
   const cell8 = document.getElementById("8")
@@ -123,14 +124,14 @@ function swapTurns() {
 }
 
 function setBoardHoverClass() {
-  board.classList.remove(X_CLASS)
-  board.classList.remove(CIRCLE_CLASS)
-  if (circleTurn) {
-    board.classList.add(CIRCLE_CLASS)
-  } else {
-    board.classList.add(X_CLASS)
+    board.classList.remove(X_CLASS)
+    board.classList.remove(CIRCLE_CLASS)
+    if (circleTurn) {
+      board.classList.add(CIRCLE_CLASS)
+    } else {
+      board.classList.add(X_CLASS)
+    }  
   }
-}
 
 function checkWin(currentClass) {
   return WINNING_COMBINATIONS.some(combination => {
