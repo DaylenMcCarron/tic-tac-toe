@@ -1,5 +1,10 @@
-let xArray = ["default"];
-let yArray = ["default"];
+let xArray = [];
+let yArray = [];
+let oppArray = [];
+let myTurn;
+let oppEnteredValue = false;
+let isLocalMultiplayer = false;
+let isX = true;
 let clicked = "f";
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
@@ -28,6 +33,10 @@ restartButton.addEventListener('click', startGame)
 function startGame() {
   xArray = [];
   yArray = [];
+  if (isX == true) {
+    myTurn = true
+  }
+  setInterval(update, 1000);
   circleTurn = false
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
@@ -40,6 +49,7 @@ function startGame() {
 }
 
 function handleClick(e) {
+  myTurn = !myTurn;
   clicked = "t";
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
@@ -57,19 +67,16 @@ function handleClick(e) {
 
 function clickedFalse() {
   clicked = "f";
-
-  
-  console.log("executed ClickedFalse");
 }
 
 function storeArray(cell, currentClass) {
+  if (isLocalMultiplayer) {
   if (currentClass == X_CLASS) {
     xArray.push(cell.innerHTML);
   } else {
     yArray.push(cell.innerHTML);
   }
-  console.log(xArray)
-  console.log(yArray)
+}
 }
 
 function endGame(draw) {
@@ -114,6 +121,79 @@ function checkWin(currentClass) {
     })
   })
 }
+
+function opponentPlay() {
+
+  if (isX && (!arraysMatch(oppArray,yArray))) {
+    myTurn = !myTurn;
+    console.log("running")
+      oppArray = yArray.slice();
+      console.log(oppArray + " opp arr")
+      console.log(yArray + " y arr")
+      const lastElement = (oppArray[oppArray.length - 1]);
+      const oppCell = document.getElementById(lastElement)
+      handleInput(oppCell);
+    
+  } else if (isX && (!arraysMatch(oppArray,xArray))) {
+     (oppArray != xArray) 
+      oppArray = xArray;
+      const lastElement = oppArray[oppArray.length - 1];
+      const oppCell = document.getElementById(lastElement)
+      handleInput(oppCell);
+    
+  }
+}
+
+function handleInput(cell) {
+  clicked = "t";
+  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+  storeArray(cell, currentClass)
+  placeMark(cell, currentClass)
+  if (checkWin(currentClass)) {
+    endGame(false)
+  } else if (isDraw()) {
+    endGame(true)
+  } else {
+    swapTurns()
+    setBoardHoverClass()
+  }
+}
+
+
+function update() {
+  if ((!isLocalMultiplayer) && (!myTurn) && oppEnteredValue) {
+    oppEnteredValue = false;
+    opponentPlay();
+  }
+}
+
+//push  to oppPlayer
+const pushButton = document.getElementById("testButton")
+pushButton.addEventListener("click", () => {
+  const input = document.getElementById("testInput").value;
+  yArray.push(input);
+  oppEnteredValue = true;
+})
+
+function arraysMatch(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// if its not local multiplayer
+// and
+// if its X turn
+// allow user to play
+// then when its not X turn
+// wait for O to play
 
 
 export {xArray, yArray, clicked, clickedFalse, circleTurn};

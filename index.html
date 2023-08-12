@@ -109,9 +109,11 @@ let playerNum = "";
           if (user) {
 
             //In room
-            const roomId = "room_" + Math.floor(Math.random() * 100);
+            const code = Math.floor(Math.random() * 100);
+            const roomId = "room_" + code;
             let roomRef = ref(database,`rooms/${roomId}`);
             G_RoomId = roomId;
+            document.getElementById("displayCode").innerHTML = code;
             joinedRoom();
            
 
@@ -243,8 +245,6 @@ let playerNum = "";
   function update() {
     if (clicked == "t") {
       clickedFalse();
-      console.log(clicked);
-      joinedRoom();
       if (isCircle) {
         updatePlayerYPos();
             } else {
@@ -284,11 +284,14 @@ let playerNum = "";
             <input type="text" placeholder="Room Code" id="roomCode">
             <button id="joinRoomBtn">Join Room</button>
             <button id="random">Random</button>
+            <p id="displayCode"></p>
       </div>
     </div>
   </div>
   <p id="Player1">Player 1</p>
   <p id="Player2">Player 2</p>
+  <input type="text" id="testInput" placeholder="Testing Input">
+  <button id="testButton">Test Button</button>
   <div class="board" id="board">
     <div class="cell" id="1"data-cell>1</div>
     <div class="cell" id="2"data-cell>2</div>
