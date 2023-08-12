@@ -196,4 +196,24 @@ function arraysMatch(arr1, arr2) {
 // wait for O to play
 
 
+
+// if its not local multiplayer
+// and
+// if its X turn
+// allow user to play
+// then when its not X turn
+// wait for O to play
+
+function play(){
+  xArray = [];
+  yArray = [];
+  circleTurn = false
+  cellElements.forEach(cell => {
+    cell.classList.remove(X_CLASS)
+    cell.classList.remove(CIRCLE_CLASS)
+    cell.removeEventListener('click', handleClick)
+    cell.addEventListener('click', handleClick, { once: true })
+  })
+}
+
 export {xArray, yArray, clicked, clickedFalse, circleTurn};
