@@ -36,6 +36,7 @@ const p1 = document.getElementById('Player1');
 const p2 = document.getElementById('Player2');
 const players = document.getElementById('Players');
 const player1 = document.getElementById('player-1');
+const player2 = document.getElementById('player-2');
 
 const playerOptions = [SingP, TwoP, MultiP];
 
@@ -67,9 +68,11 @@ document.getElementById("playButton").addEventListener("click", function(){
   if(TwoPbtn.checked){
     boardc.classList.toggle("moveRight");
     p1value = p1.value;
+    p2value = p2.value;
     twoPlayer()
-    p1.innerHTML = p1value;
     players.classList.remove('hidden');
+    player1.innerHTML = p1value;
+    player2.innerHTML = p2value;
   }
 });
 document.getElementById("quitButton").addEventListener("click", beforeGame);
@@ -85,6 +88,7 @@ quitB.addEventListener('click', () => {
 
 let circleTurn
 let p1value = ''
+let p2value = ''
 
 restartButton.addEventListener('click', twoPlayer)
 
