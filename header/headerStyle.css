@@ -1,0 +1,90 @@
+:root{
+    font-size: 16px;
+    font-family: Montserrat;
+    --text-p: rgb(84, 128, 209);
+    --text-s: #273155;
+    --bg-p: #435181;
+    --bg-s: rgb(198, 191, 247);
+}
+
+body{
+    color: #F1F1F1;
+    background-color: #273155;
+    margin:0;
+    padding:0;
+}
+
+body::-webkit-scrollbar{
+    width: 0.4 rem;
+}
+body::-webkit-scrollbar-track{
+    background-color: #435181;
+}
+body::-webkit-scrollbar-thumb{
+    background: #161f3b;
+}
+
+main{
+    margin-left: 5rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.navbar{
+    width:5rem;
+    height: 100vh;
+    position: fixed;
+    background: #44517d;
+    transition: width 200ms ease;
+}
+.navList{
+    list-style: none;
+    padding:0;
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:100%;
+}
+
+.nav-item{
+    width:100%;
+}
+.nav-item:last-child{
+    margin-top: auto;
+}
+
+.nav-link, .nav-icon{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color:#F1F1F1;
+    text-decoration:none;
+    background: #435181;
+    transition: 800ms ease;
+    border-radius: 2rem;
+}
+.nav-link:hover{
+    background: rgb(35,47,91);
+    background: linear-gradient(180deg, rgba(35,47,91,1) 0%, rgba(67,81,129,0.2567620798319328) 50%, rgba(47,57,91,0.8702074579831933) 100%);
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.link-text{
+    display:none;
+    margin-left: 1rem;
+}
+
+.nav-icon,.nav-link svg{
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+
+.navbar:hover{
+    width:16rem;
+}
+
+.navbar:hover .link-text{
+    display: block;
+}
