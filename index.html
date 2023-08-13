@@ -253,9 +253,10 @@ let playerNum = "";
       }
     }
   }
-
-
   </script>
+
+  <!-- html starts here -->
+<div class="playArea">
   <div class="left-screen-options lso">
 
     <div id="mode" class="left-stuff">
@@ -291,16 +292,15 @@ let playerNum = "";
       </svg>
       Online MultiPlayer</label><br>
     </div>
-
     </div>
-
+    
     <div id="two-player" class="two-plyr">
       <p>Two player:</p>
       <p>Add player names:</p>
       <input type="text" placeholder="Player 1">
       <input type="text" placeholder="Player 2">
     </div>
-
+  
     <div id="multi-player" class="multi-plyr">
         <br><p>Online Multiplayer</p>
         <div>
@@ -309,6 +309,7 @@ let playerNum = "";
           <button id="createGuest" class="ok-btn" >Ok</button>
           <p id="displayUsername">Bruh</p>
         </div>
+
         <div id="connect-room">
             <p>Connect to a room card</p>
             <button id="createRoom">Create Room</button>
@@ -318,13 +319,16 @@ let playerNum = "";
             <p id="displayCode"></p>
       </div>
     </div>
+    <div class="display-players">
+      <p id="Player1">Player 1</p>
+      <p id="Player2">Player 2</p>
+      <input type="text" id="testInput" placeholder="Testing Input">
+      <button id="testButton">Test Button</button>
+    </div>
   </div>
-  <div class="display-players">
-  <p id="Player1">Player 1</p>
-  <p id="Player2">Player 2</p>
-  <input type="text" id="testInput" placeholder="Testing Input">
-  <button id="testButton">Test Button</button>
-</div>
+
+
+<div class="boardWrapper right-screen">
   <div class="board" id="board">
     <div class="cell" id="1"data-cell>1</div>
     <div class="cell" id="2"data-cell>2</div>
@@ -336,11 +340,16 @@ let playerNum = "";
     <div class="cell" id="8"data-cell>8</div>
     <div class="cell" id="9"data-cell>9</div>
   </div>
+  <button id="playButton" class="play-btn">Play</button>
+</div>
+
+</div> <!--end of play area-->
+
   <div class="winning-message" id="winningMessage">
     <div data-winning-message-text></div>
     <button id="restartButton">Restart</button>
     <button id="quitButton" class="quit-btn">Quit</button>
   </div>
-  <button id="playButton" class="play-btn">Play</button>
+
 </body>
 </html>
