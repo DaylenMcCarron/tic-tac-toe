@@ -40,6 +40,7 @@ header{
 }
 .logo{
     padding-left: 2rem;
+    cursor: pointer;
 }
 .help-btn{
     background-color: none;
@@ -50,6 +51,7 @@ header{
     padding-right: 1rem;
     margin-left: 42rem;
     cursor: pointer;
+    transition: 400ms ease;
 }
 .help-btn:hover{
     background-color: #ffffff;
@@ -112,7 +114,7 @@ main{
     color:#F1F1F1;
     text-decoration:none;
     background: #435181;
-    transition: 800ms ease;
+    transition: 1s ease;
     border-radius: 2rem;
 }
 .nav-link:hover{
@@ -132,14 +134,34 @@ main{
     margin: 0 1.5rem;
 }
 .nav-icon{
-    padding-top: 1rem;
+    position: relative;
     padding-bottom: 1rem;
+    padding-top: 1rem;
     border-radius: 0;
     padding-left: 0.75rem;
+    cursor: pointer;
     background: rgb(28,35,57);
     background: linear-gradient(180deg, rgba(28,35,57,1) 85%, rgba(39,49,85,0.1727284663865546) 100%);
 }
-
+.nav-icon svg{
+    height:2rem;
+    width: 3rem;
+    position: absolute;
+    transform-style: preserve-3d;
+    perspective: 100rem;
+    backface-visibility: hidden;
+    transition: 1s ease;
+    cursor: pointer;
+}
+.nav-icon svg:nth-child(2) {
+    transform: rotateY(180deg);
+}
+.nav-icon:hover svg:nth-child(2){
+    transform: rotateY(0deg);
+}
+.nav-icon:hover svg:nth-child(1){
+    transform: rotateY(-180deg);
+}
 .navbar:hover{
     width:14rem;
 }
