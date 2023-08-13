@@ -24,7 +24,7 @@ const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 const playB = document.querySelector(".play-btn")
-const boardc = document.querySelector(".board")
+const boardc = document.querySelector(".boardWrapper")
 const quitB = document.querySelector(".quit-btn")
 
 document.getElementById("playButton").addEventListener("click", startGame);
@@ -234,4 +234,4 @@ function arraysMatch(arr1, arr2) {
 // then when its not X turn
 // wait for O to play
 
-export {xArray, yArray, clicked, clickedFalse, circleTurn};
+export { circleTurn, clicked, clickedFalse, xArray, yArray };
