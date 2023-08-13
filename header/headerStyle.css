@@ -49,11 +49,24 @@ header{
     padding-left: 1rem;
     padding-right: 1rem;
     margin-left: 42rem;
+    cursor: pointer;
+}
+.help-btn:hover{
+    background-color: #ffffff;
+    color:#161f3b;
 }
 .account-btn{
     width:3rem;
     height:3rem;
     margin-left: 2rem;
+    cursor: pointer;
+    border-radius: 5rem;
+}
+.account-btn:hover{
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-width: 0.2rem;
+    transition: 300ms;
 }
 h1{
     font-size: 3.5rem;
