@@ -55,7 +55,6 @@ TwoPbtn.addEventListener('change', function() {
 MultiPbtn.addEventListener('change', function() {
   if(this.checked){
     hideAllPlayerOptions();
-    console.log("test")
     MultiP.classList.remove('hidden');
   } 
 });
@@ -108,6 +107,7 @@ function beforeGame() {
   cell1.classList.add(X_CLASS)
   winningMessageElement.classList.remove('show')
   document.getElementById("playButton").style.display = "";
+  document.getElementById("lso").style.display = "";
 }
 
 function twoPlayer() {
@@ -127,6 +127,7 @@ function twoPlayer() {
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
   document.getElementById("playButton").style.display = "none";
+  document.getElementById("lso").style.display = "none";
 }
 
 function handleClick(e) {
