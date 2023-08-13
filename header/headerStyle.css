@@ -24,6 +24,14 @@ body::-webkit-scrollbar-thumb{
     background: #161f3b;
 }
 
+header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 8rem;
+}
+
+
 main{
     margin-left: 5rem;
     padding: 1rem;
