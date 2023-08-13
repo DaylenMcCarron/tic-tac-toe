@@ -23,16 +23,46 @@ body::-webkit-scrollbar-track{
 body::-webkit-scrollbar-thumb{
     background: #161f3b;
 }
-
 header{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 8rem;
+    position: fixed;
+    width:100%;
 }
 
+.headerStyle{
+    display:flex;
+    align-items: center;
+    margin-left: 5rem;
+    background: rgb(28,35,57);
+    max-height: 6.45rem;
+    background: linear-gradient(180deg, rgba(28,35,57,1) 85%, rgba(39,49,85,0.1727284663865546) 100%);
+    position: absolute;
+    z-index: 999;
+}
+.logo{
+    padding-left: 2rem;
+}
+.help-btn{
+    background-color: none;
+    border-style: solid;
+    border-radius: 1rem;
+    color:#ffffff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 42rem;
+}
+.account-btn{
+    width:3rem;
+    height:3rem;
+    margin-left: 2rem;
+}
+h1{
+    font-size: 3.5rem;
+    margin-left: 2rem;
+}
 
 main{
+    display: none;
+    padding-top: 2rem;
     margin-left: 5rem;
     padding: 1rem;
     font-size: 1.5rem;
@@ -84,13 +114,21 @@ main{
     margin-left: 1rem;
 }
 
-.nav-icon,.nav-link svg{
+.nav-link svg{
     min-width: 2rem;
     margin: 0 1.5rem;
 }
+.nav-icon{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0;
+    padding-left: 0.75rem;
+    background: rgb(28,35,57);
+    background: linear-gradient(180deg, rgba(28,35,57,1) 85%, rgba(39,49,85,0.1727284663865546) 100%);
+}
 
 .navbar:hover{
-    width:16rem;
+    width:14rem;
 }
 
 .navbar:hover .link-text{
