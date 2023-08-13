@@ -32,6 +32,10 @@ const MultiPbtn = document.getElementById('multi-plyr-opt');
 const SingP = document.getElementById('display-players');
 const TwoP = document.getElementById('two-player');
 const MultiP = document.getElementById('multi-player');
+const p1 = document.getElementById('Player1');
+const p2 = document.getElementById('Player2');
+const players = document.getElementById('Players');
+const player1 = document.getElementById('player-1');
 
 const playerOptions = [SingP, TwoP, MultiP];
 
@@ -62,7 +66,10 @@ MultiPbtn.addEventListener('change', function() {
 document.getElementById("playButton").addEventListener("click", function(){
   if(TwoPbtn.checked){
     boardc.classList.toggle("moveRight");
+    p1value = p1.value;
     twoPlayer()
+    p1.innerHTML = p1value;
+    players.classList.remove('hidden');
   }
 });
 document.getElementById("quitButton").addEventListener("click", beforeGame);
@@ -73,9 +80,11 @@ quitB.addEventListener('click', () => {
   TwoPbtn.checked = false;
   MultiPbtn.checked = false;
   hideAllPlayerOptions();
+  players.classList.add('hidden');
 });
 
 let circleTurn
+let p1value = ''
 
 restartButton.addEventListener('click', twoPlayer)
 

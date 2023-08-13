@@ -236,3 +236,12 @@ transition: 500ms;
   .hidden{
     display: none;
   }
+
+  .player{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
