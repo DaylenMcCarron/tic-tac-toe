@@ -26,22 +26,42 @@ const winningMessageTextElement = document.querySelector('[data-winning-message-
 const playB = document.querySelector(".play-btn")
 const boardc = document.querySelector(".boardWrapper")
 const quitB = document.querySelector(".quit-btn")
+const SingPbtn = document.getElementById('sing-plyr-opt');
 const TwoPbtn = document.getElementById('two-plyr-opt');
+const MultiPbtn = document.getElementById('multi-plyr-opt');
+const SingP = document.getElementById('display-players');
 const TwoP = document.getElementById('two-player');
+const MultiP = document.getElementById('multi-player');
+
+const playerOptions = [SingP, TwoP, MultiP];
 
 beforeGame()
+hideAllPlayerOptions();
+
+SingPbtn.addEventListener('change', function() {
+  if(this.checked){
+    hideAllPlayerOptions();
+    SingP.classList.remove('hidden');
+  } 
+});
 
 TwoPbtn.addEventListener('change', function() {
   if(this.checked){
+    hideAllPlayerOptions();
     TwoP.classList.remove('hidden');
   } 
-  else{
-    TwoP.classList.add('hidden');
-  }
+});
+
+MultiPbtn.addEventListener('change', function() {
+  if(this.checked){
+    hideAllPlayerOptions();
+    console.log("test")
+    MultiP.classList.remove('hidden');
+  } 
 });
 
 document.getElementById("playButton").addEventListener("click", function(){
-  if(TwoP.checked){
+  if(TwoPbtn.checked){
     boardc.classList.toggle("moveRight");
     twoPlayer()
   }
@@ -50,12 +70,21 @@ document.getElementById("quitButton").addEventListener("click", beforeGame);
 
 quitB.addEventListener('click', () => {
   boardc.classList.remove("moveRight");
-  TwoP.checked = false;
+  SingPbtn.checked = false;
+  TwoPbtn.checked = false;
+  MultiPbtn.checked = false;
+  hideAllPlayerOptions();
 });
 
 let circleTurn
 
 restartButton.addEventListener('click', twoPlayer)
+
+function hideAllPlayerOptions() {
+  playerOptions.forEach(option => {
+    option.classList.add('hidden');
+  });
+}
 
 function beforeGame() {
   cellElements.forEach(cell => {

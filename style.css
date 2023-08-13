@@ -236,11 +236,3 @@ transition: 500ms;
   .hidden{
     display: none;
   }
-
-  .multi-plyr{
-    display: none;
-  }
-
-  .display-players{
-    display: none;
-  }
