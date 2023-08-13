@@ -257,27 +257,57 @@ let playerNum = "";
 
   </script>
   <div class="left-screen-options lso">
-    <p>Hello World</p>
-    <div id="mode">
-      <p>Mode:</p>
-      <button>Single Player</button>
-      <button>Two Player</button>
-      <button>Online Multiplayer Player</button>
+
+    <div id="mode" class="left-stuff">
+      <h2>Choose Mode:</h2>
+
+      <div class="modes">
+        
+      <input type="radio" name="mode" class="radio-ip" id="sing-plyr-opt" value="SinglePlayer">
+      <label class="radio-lb" for="sing-plyr-opt">      
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="#ffffff">
+        <path d="M14 14C17.8675 14 21 10.8675 21 7C21 3.1325 17.8675 0 14 0C10.1325 0 7 3.1325 7 7C7 10.8675 10.1325 14 14 14ZM14 17.5C9.3275 17.5 0 19.845 0 24.5V28H28V24.5C28 19.845 18.6725 17.5 14 17.5Z"/>
+      </svg>
+      Single Player</label><br>
+
+      <input type="radio" name="mode" class="radio-ip" id="two-plyr-opt" value="TwoPlayer">
+      <label class="radio-lb" for="two-plyr-opt">
+        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="28" viewBox="0 0 44 28" fill="#ffffff">
+        <path d="M30 12C33.32 12 35.98 9.32 35.98 6C35.98 2.68 33.32 0 30 0C26.68 0 24 2.68 24 6C24 9.32 26.68 12 30 12ZM14 12C17.32 12 19.98 9.32 19.98 6C19.98 2.68 17.32 0 14 0C10.68 0 8 2.68 8 6C8 9.32 10.68 12 14 12ZM14 16C9.34 16 0 18.34 0 23V28H28V23C28 18.34 18.66 16 14 16ZM30 16C29.42 16 28.76 16.04 28.06 16.1C30.38 17.78 32 20.04 32 23V28H44V23C44 18.34 34.66 16 30 16Z"/>
+      </svg>
+      Local MultiPlayer</label><br>
+
+      <input type="radio" name="mode" class="radio-ip" id="multi-plyr-opt" value="MultiPlayer">
+      <label class="radio-lb" for="multi-plyr-opt"><svg xmlns="http://www.w3.org/2000/svg" width="41" height="54" viewBox="0 0 41 54" fill="none">
+        <path d="M30.5909 35.6365C28.7409 35.6365 27.0591 36.3092 25.5455 37.3183H15.4545C14.1091 36.3092 12.2591 35.6365 10.4091 35.6365C5.7 35.6365 2 39.3365 2 44.0456C2 48.7547 5.7 52.4547 10.4091 52.4547C12.2591 52.4547 13.9409 51.7819 15.4545 50.7728H25.5455C26.8909 51.7819 28.7409 52.4547 30.5909 52.4547C35.3 52.4547 39 48.7547 39 44.0456C39 39.3365 35.3 35.6365 30.5909 35.6365Z" fill="#273155" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10.4091 40.6819V47.4092" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7.04541 44.0454H13.7727" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.5 28.9091C27.9307 28.9091 33.9545 22.8853 33.9545 15.4545C33.9545 8.02381 27.9307 2 20.5 2C13.0692 2 7.04541 8.02381 7.04541 15.4545C7.04541 22.8853 13.0692 28.9091 20.5 28.9091Z" fill="#273155" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.5 28.9091C23.9367 28.9091 26.7227 22.8853 26.7227 15.4545C26.7227 8.02381 23.9367 2 20.5 2C17.0633 2 14.2773 8.02381 14.2773 15.4545C14.2773 22.8853 17.0633 28.9091 20.5 28.9091Z" fill="#273155" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7.04541 15.4546H33.9545" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.5 37.318V28.9089" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="30.5909" cy="42.1234" r="1.44156" fill="white"/>
+        <circle cx="33.474" cy="45.9674" r="1.44156" fill="white"/>
+      </svg>
+      Online MultiPlayer</label><br>
     </div>
-    <div id="two-player">
+
+    </div>
+
+    <div id="two-player" class="two-plyr">
       <p>Two player:</p>
       <p>Add player names:</p>
       <input type="text" placeholder="Player 1">
       <input type="text" placeholder="Player 2">
     </div>
-    <div id="multi-player">
-        <br><p>Multiplayer</p>
+
+    <div id="multi-player" class="multi-plyr">
+        <br><p>Online Multiplayer</p>
         <div>
           <p>Guest:</p>
           <input type="text" placeholder="Name" id="guestName">
-          <button id="createGuest">Ok</button>
+          <button id="createGuest" class="ok-btn" >Ok</button>
           <p id="displayUsername">Bruh</p>
-
         </div>
         <div id="connect-room">
             <p>Connect to a room card</p>
@@ -289,10 +319,12 @@ let playerNum = "";
       </div>
     </div>
   </div>
+  <div class="display-players">
   <p id="Player1">Player 1</p>
   <p id="Player2">Player 2</p>
   <input type="text" id="testInput" placeholder="Testing Input">
   <button id="testButton">Test Button</button>
+</div>
   <div class="board" id="board">
     <div class="cell" id="1"data-cell>1</div>
     <div class="cell" id="2"data-cell>2</div>

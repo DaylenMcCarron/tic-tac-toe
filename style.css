@@ -5,11 +5,13 @@
 :root {
   --cell-size: 143.869px;
   --mark-size: calc(var(--cell-size) * .9);
+  font-family: Montserrat;
+  font-size: 16px;
 }
 
 body {
   margin: 0;
-  background-color: #1D2338;;
+  background-color:#273155;;
 }
 
 .board {
@@ -146,19 +148,67 @@ transition: 500ms;
   }
 
   #playButton{
-    width: 299.727px;
-    height: 80.498px;
+    width: 18rem;
+    height: 5rem;
     flex-shrink: 0;
-    border-radius: 17.127px;
+    border-radius: 1.2rem;
     background: #273155;
     color: #FFF;
     font-family: Montserrat;
-    font-size: 33.398px;
+    font-size: 2.2rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     margin: auto;
+    cursor: pointer;
+    border-color: #B796FF;
 }
 
-
   /* End of Left screen options styling */
+  .modes{
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Montserrat;
+    width:16rem;
+  }
+  .modes svg{
+    max-width: 1.2rem;
+    max-height: 1.2rem;
+    display: flex;
+    margin-left: 1rem;
+    margin-right:1rem;
+    fill:#ffffff;
+  }
+
+  .left-stuff, .two-plyr, .multi-plyr, .display-players{
+    margin-left:18rem;
+    color: #fff;
+  }
+  
+  .radio-ip{
+    display:none;
+  }
+  .radio-lb{
+    display:flex;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #273155;
+    border-color: #ffffff;
+    border-style: solid;
+    border-radius: 1rem;
+    width:16rem;
+    height:3rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+    transition: 400ms ease;
+    padding-left: 0.7rem;
+  }
+  .radio-ip:checked + .radio-lb{
+    background: #ffffff;
+    color: #273155;
+  }
+  .radio-ip:checked + .radio-lb svg{
+    fill:#273155;
+  }
