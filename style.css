@@ -212,3 +212,15 @@ transition: 500ms;
   .radio-ip:checked + .radio-lb svg{
     fill:#273155;
   }
+
+  .hidden{
+    display: none;
+  }
+
+  .multi-plyr{
+    display: none;
+  }
+
+  .display-players{
+    display: none;
+  }

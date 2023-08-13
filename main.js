@@ -26,23 +26,36 @@ const winningMessageTextElement = document.querySelector('[data-winning-message-
 const playB = document.querySelector(".play-btn")
 const boardc = document.querySelector(".board")
 const quitB = document.querySelector(".quit-btn")
+const TwoPbtn = document.getElementById('two-plyr-opt');
+const TwoP = document.getElementById('two-player');
 
-document.getElementById("playButton").addEventListener("click", startGame);
-document.getElementById("quitButton").addEventListener("click", beforeGame);
+beforeGame()
 
-playB.addEventListener('click', () => {
-  boardc.classList.toggle("moveRight");
+TwoPbtn.addEventListener('change', function() {
+  if(this.checked){
+    TwoP.classList.remove('hidden');
+  } 
+  else{
+    TwoP.classList.add('hidden');
+  }
 });
+
+document.getElementById("playButton").addEventListener("click", function(){
+  if(TwoP.checked){
+    boardc.classList.toggle("moveRight");
+    twoPlayer()
+  }
+});
+document.getElementById("quitButton").addEventListener("click", beforeGame);
 
 quitB.addEventListener('click', () => {
   boardc.classList.remove("moveRight");
+  TwoP.checked = false;
 });
 
 let circleTurn
 
-restartButton.addEventListener('click', startGame)
-
-beforeGame()
+restartButton.addEventListener('click', twoPlayer)
 
 function beforeGame() {
   cellElements.forEach(cell => {
@@ -68,7 +81,7 @@ function beforeGame() {
   document.getElementById("playButton").style.display = "";
 }
 
-function startGame() {
+function twoPlayer() {
   xArray = [];
   yArray = [];
   if (isX == true) {
