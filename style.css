@@ -237,11 +237,48 @@ transition: 500ms;
     display: none;
   }
 
-  .player{
+  .player1, .player2{
     color: #FFF;
     font-family: Montserrat;
-    font-size: 39px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+    font-size: 2rem;
+  }
+  .player1{
+    margin-left:9rem;
+  }
+
+  .player2{
+    margin-left: 70rem;
+    z-index:0;
+    position: absolute;
+    padding-top: 7rem;
+  }
+
+  .plyr-X{
+    margin-left: 10rem;
+    margin-top: 5rem;
+  }
+  .plyrO{
+    margin-left: 70rem;
+    z-index:0;
+    position: fixed;
+  }
+
+  .player-option{
+    margin-left: 18rem;
+  }
+  .twoPlyrTitle{
+    font-size: 2rem;
+  }
+  .playerName{
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    height:3rem;
+    width: 15rem;
+    font-family: Montserrat;
+    align-items: center;
+    text-align:left;
+    padding-left: 0.5rem;
+    font-size:1.1rem;
+    color:#3c3c3d;
   }
