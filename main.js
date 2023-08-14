@@ -23,21 +23,80 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-const btnMoveRight = document.querySelector(".play-btn")
-const boardc = document.querySelector(".board")
+const playB = document.querySelector(".play-btn")
+const boardc = document.querySelector(".boardWrapper")
+const quitB = document.querySelector(".quit-btn")
+const SingPbtn = document.getElementById('sing-plyr-opt');
+const TwoPbtn = document.getElementById('two-plyr-opt');
+const MultiPbtn = document.getElementById('multi-plyr-opt');
+const SingP = document.getElementById('display-players');
+const TwoP = document.getElementById('two-player');
+const MultiP = document.getElementById('multi-player');
+const p1 = document.getElementById('Player1');
+const p2 = document.getElementById('Player2');
+const players = document.getElementById('Players');
+const player1 = document.getElementById('player-1');
+const player2 = document.getElementById('player-2');
 
-document.getElementById("playButton").addEventListener("click", startGame);
+const playerOptions = [SingP, TwoP, MultiP];
+
+beforeGame()
+hideAllPlayerOptions();
+
+SingPbtn.addEventListener('change', function() {
+  if(this.checked){
+    hideAllPlayerOptions();
+    SingP.classList.remove('hidden');
+  } 
+});
+
+TwoPbtn.addEventListener('change', function() {
+  if(this.checked){
+    hideAllPlayerOptions();
+    TwoP.classList.remove('hidden');
+  } 
+});
+
+MultiPbtn.addEventListener('change', function() {
+  if(this.checked){
+    hideAllPlayerOptions();
+    MultiP.classList.remove('hidden');
+  } 
+});
+
+document.getElementById("playButton").addEventListener("click", function(){
+  if(TwoPbtn.checked){
+    boardc.classList.toggle("moveRight");
+    p1value = p1.value;
+    p2value = p2.value;
+    twoPlayer()
+    players.classList.remove('hidden');
+    player1.innerHTML = p1value;
+    player2.innerHTML = p2value;
+  }
+});
 document.getElementById("quitButton").addEventListener("click", beforeGame);
 
-btnMoveRight.addEventListener('click', () => {
-  boardc.classList.toggle("moveRight");
+quitB.addEventListener('click', () => {
+  boardc.classList.remove("moveRight");
+  SingPbtn.checked = false;
+  TwoPbtn.checked = false;
+  MultiPbtn.checked = false;
+  hideAllPlayerOptions();
+  players.classList.add('hidden');
 });
 
 let circleTurn
+let p1value = ''
+let p2value = ''
 
-restartButton.addEventListener('click', startGame)
+restartButton.addEventListener('click', twoPlayer)
 
-beforeGame()
+function hideAllPlayerOptions() {
+  playerOptions.forEach(option => {
+    option.classList.add('hidden');
+  });
+}
 
 function beforeGame() {
   cellElements.forEach(cell => {
@@ -60,9 +119,11 @@ function beforeGame() {
   cell2.classList.add(CIRCLE_CLASS)
   cell1.classList.add(X_CLASS)
   winningMessageElement.classList.remove('show')
+  document.getElementById("playButton").style.display = "";
+  document.getElementById("lso").style.display = "";
 }
 
-function startGame() {
+function twoPlayer() {
   xArray = [];
   yArray = [];
   if (isX == true) {
@@ -79,6 +140,8 @@ function startGame() {
   })
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
+  document.getElementById("playButton").style.display = "none";
+  document.getElementById("lso").style.display = "none";
 }
 
 function handleClick(e) {
@@ -254,4 +317,4 @@ function aiBot() {
 
 
 
-export {xArray, yArray, clicked, clickedFalse, circleTurn};
+export { circleTurn, clicked, clickedFalse, xArray, yArray };
