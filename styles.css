@@ -1,0 +1,92 @@
+body{
+    background-color: #273155;;
+}
+
+.play{
+    width: 471px;
+    height: 587.903px;
+    flex-shrink: 0;
+    border-radius: 35.967px;
+    background: #1D2338;
+    box-shadow: 0px 3.425454616546631px 16.270910263061523px 15.414546012878418px rgba(0, 0, 0, 0.17);
+    display: grid;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.cell1, .cell2, .cell3, .cell4, .cell5, .cell6, .cell7, .cell8, .cell9{
+    width: 143.869px;
+    height: 143.869px;
+    flex-shrink: 0;
+    background: #1D2338;
+    border-color: #B3B3B3;
+    border-style: solid;
+}
+
+.cell2{
+    border-right: 1px ;
+    border-bottom: 1px ;
+    border-left: 1px ;
+}
+
+.cell3{
+    border-bottom: 1px ;
+    border-left: 1px ;
+}
+
+.cell4{
+    border-top: 1px ;
+    border-bottom: 1px ;
+    border-right: 1px ;
+}
+
+.cell5{
+    border-top: 1px ;
+    border-bottom: 1px;
+    border-right: 1px;
+    border-left: 1px;
+}
+
+.cell6{
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 1px;
+}
+
+.cell7{
+    border-top: 1px;
+    border-right: 1px;
+}
+
+.cell8{
+    border-top: 1px ;
+    border-left: 1px ;
+    border-right: 1px ;
+}
+
+.cell9{
+    border-top: 1px ;
+    border-left: 1px;
+}
+
+.playButton{
+    width: 299.727px;
+    height: 80.498px;
+    flex-shrink: 0;
+    border-radius: 17.127px;
+    background: #273155;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 33.398px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: auto;
+}
