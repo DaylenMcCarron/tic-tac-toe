@@ -74,6 +74,16 @@ document.getElementById("playButton").addEventListener("click", function(){
     player1.innerHTML = p1value;
     player2.innerHTML = p2value;
   }
+
+  else if(SingPbtn.checked){
+    boardc.classList.toggle("moveRight");
+    p1value = p1.value;
+    p2value = p2.value;
+    onePlayer()
+    players.classList.remove('hidden');
+    player1.innerHTML = p1value;
+    player2.innerHTML = p2value;
+  }
 });
 document.getElementById("quitButton").addEventListener("click", beforeGame);
 
@@ -144,23 +154,80 @@ function twoPlayer() {
   document.getElementById("lso").style.display = "none";
 }
 
+
+//One Player
+function onePlayer() {
+  myTurn = true;
+  circleTurn = false;
+
+  cellElements.forEach(cell => {
+    cell.classList.remove(X_CLASS);
+    cell.classList.remove(CIRCLE_CLASS);
+    cell.removeEventListener('click', handleClick);
+    cell.addEventListener('click', handleClick, { once: true });
+  });
+
+  setBoardHoverClass();
+  winningMessageElement.classList.remove('show');
+  document.getElementById("playButton").style.display = "none";
+  document.getElementById("lso").style.display = "none";
+}
+
+
 function handleClick(e) {
-  myTurn = !myTurn;
-  clicked = "t";
-  const cell = e.target
+  const cell = e.target;
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
   storeArrayOnClick(cell, currentClass)
   placeMark(cell, currentClass)
-  if (checkWin(currentClass)) {
-    endGame(false)
-  } else if (isDraw()) {
-    endGame(true)
-  } else {
-    swapTurns()
-    setBoardHoverClass()
-    aiBot();
+  if (myTurn) {
+    placeMark(cell, currentClass);
+    if (checkWin(currentClass)) {
+      endGame(false);
+    } else if (isDraw()) {
+      endGame(true);
+    } 
+    else {
+      swapTurns();
+      setBoardHoverClass();
+      if(SingPbtn.checked){
+      setTimeout(computerMove,10);
+      }
+    }
   }
+  console.log(xArray);
 }
+
+function computerMove() {
+  const emptyCells = [...cellElements].filter(cell => !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS));
+  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+
+  if (emptyCells.length > 0) {
+    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    const randomEmptyCell = emptyCells[randomIndex];
+    placeMark(randomEmptyCell, currentClass);
+    randomEmptyCell.removeEventListener('click', handleClick);
+
+    if (checkWin(currentClass)) {
+      endGame(false);
+    } else if (isDraw()) {
+      endGame(true);
+    } else {
+      swapTurns();
+      setBoardHoverClass();
+    }
+  }
+  console.log(yArray)
+  console.log(oppArray)
+}
+
+// Rest of your code...
+
+
+// Rest of your code...
+
+
+// Rest of your existing code...
+
 
 function clickedFalse() {
   clicked = "f";
@@ -220,6 +287,7 @@ function setBoardHoverClass() {
   }
 
 function checkWin(currentClass) {
+  console.log(currentClass);
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
       return cellElements[index].classList.contains(currentClass)
@@ -247,20 +315,7 @@ function opponentPlay() {
   }
 }
 
-function handleInput(cell) {
-  clicked = "t";
-  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-  storeArray(cell, currentClass)
-  placeMark(cell, currentClass)
-  if (checkWin(currentClass)) {
-    endGame(false)
-  } else if (isDraw()) {
-    endGame(true)
-  } else {
-    swapTurns()
-    setBoardHoverClass()
-  }
-}
+
 
 
 function update() {
