@@ -68,7 +68,8 @@ function startGame() {
   if (isX == true) {
     myTurn = true
   }
-  setInterval(update, 1000);
+  setInterval(update, 2000); // Change the interval duration to 2000 ms
+
   circleTurn = false
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
@@ -85,7 +86,7 @@ function handleClick(e) {
   clicked = "t";
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-  storeArray(cell, currentClass)
+  storeArrayOnClick(cell, currentClass)
   placeMark(cell, currentClass)
   if (checkWin(currentClass)) {
     endGame(false)
@@ -94,11 +95,20 @@ function handleClick(e) {
   } else {
     swapTurns()
     setBoardHoverClass()
+    aiBot();
   }
 }
 
 function clickedFalse() {
   clicked = "f";
+}
+
+function storeArrayOnClick(cell, currentClass) {
+  if (currentClass == X_CLASS) {
+    xArray.push(cell.innerHTML);
+  } else {
+    yArray.push(cell.innerHTML);
+  }
 }
 
 function storeArray(cell, currentClass) {
@@ -160,8 +170,6 @@ function opponentPlay() {
     myTurn = !myTurn;
     console.log("running")
       oppArray = yArray.slice();
-      console.log(oppArray + " opp arr")
-      console.log(yArray + " y arr")
       const lastElement = (oppArray[oppArray.length - 1]);
       const oppCell = document.getElementById(lastElement)
       handleInput(oppCell);
@@ -199,12 +207,11 @@ function update() {
   }
 }
 
+
 //push  to oppPlayer
 const pushButton = document.getElementById("testButton")
 pushButton.addEventListener("click", () => {
-  const input = document.getElementById("testInput").value;
-  yArray.push(input);
-  oppEnteredValue = true;
+  aiBot();
 })
 
 function arraysMatch(arr1, arr2) {
@@ -220,11 +227,31 @@ function arraysMatch(arr1, arr2) {
   return true;
 }
 
-// if its not local multiplayer
-// and
-// if its X turn
-// allow user to play
-// then when its not X turn
-// wait for O to play
+let inputArr = [];
+function aiBot() {
+  if (myTurn) {
+    return; // If it's still the human's turn, don't execute AI moves
+  }
+
+  const availableCells = Array.from(cellElements).filter(cell => {
+    return !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS);
+  });
+
+  if (availableCells.length === 0) {
+    return; // No available cells to play
+  }
+
+  const randomIndex = Math.floor(Math.random() * availableCells.length);
+  const aiCell = availableCells[randomIndex];
+  
+  setTimeout(() => {
+    handleInput(aiCell);
+  }, 1000); // Add a small delay to make AI moves more visible
+
+  oppEnteredValue = true;
+}
+
+
+
 
 export {xArray, yArray, clicked, clickedFalse, circleTurn};
