@@ -87,8 +87,6 @@ h1{
   margin-left: 2rem;
 }
 .navbar{
-  width:5rem;
-  height: 100vh;
   position: fixed;
   background: #25325d;
   transition: width 200ms ease;
@@ -451,4 +449,14 @@ transition: 500ms;
     font-size:1.1rem;
     color:#3c3c3d;
     transition: 1s ease;
+  }
+
+  /* large screens */
+  @media only screen and (min-width:600px){
+
+    .navbar{
+      width:5rem;
+      height: 100vh;
+      top:0;
+    }
   }
