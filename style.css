@@ -576,7 +576,8 @@ transition: 500ms;
   justify-content: center;
   align-content: center;
   z-index:0;
-  margin-left: 2rem;
+  margin-left:1rem;
+  padding: 0;
 }
 
 #playButton{
