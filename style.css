@@ -24,12 +24,7 @@ body {
   margin-top: 2rem;
 }
 
-body::-webkit-scrollbar-track{
-  background-color: #435181;
-}
-body::-webkit-scrollbar-thumb{
-  background: #161f3b;
-}
+
 
 /*header and nav start */
 
@@ -395,7 +390,12 @@ transition: 500ms;
   margin-left:18rem;
   color: #fff;
 }
-
+body::-webkit-scrollbar-track{
+  background-color: #435181;
+}
+body::-webkit-scrollbar-thumb{
+  background: #161f3b;
+}
 .radio-ip{
   display:none;
 }
