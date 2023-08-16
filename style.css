@@ -10,8 +10,8 @@
   --text-s: #273155;
   --bg-p: #435181;
   --bg-s: rgb(198, 191, 247);
+  height: 100vh;
 }
-
 body {
   margin: 0;
   background-color:#273155;
@@ -46,8 +46,6 @@ body::-webkit-scrollbar-thumb{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:100%;
-  padding-top: 2rem;
 }
 
 .nav-item{
@@ -479,12 +477,22 @@ transition: 500ms;
 
 
 
+
+
+
+
+
+
+
+
   /* Small Screens */
   @media (max-width:768px){
+
     .navbar{
       bottom:0;
       width:100vw;
-      height: 5rem;
+      margin-left: 0;
+      justify-content: center;
     }
     .nav-icon{
       display:none;
@@ -494,18 +502,17 @@ transition: 500ms;
     }
     .nav-link{
       justify-content: center;
+      height: 4rem;
+      width:4rem;
     }
-    .nav-item:last-child{
-      margin-right: 0.5rem;
-    }
-    header{
-      position: sticky;
-      width:100%;
-    }
+
     .headerStyle{
       display:flex;
+      position: sticky;
+      width:100%;
       align-items: center;
       background: rgb(28,35,57);
+      background-repeat:repeat;
       max-height: 6.45rem;
       background: linear-gradient(180deg, rgba(28,35,57,1) 85%, rgba(39,49,85,0.1727284663865546) 100%);
       z-index: 999;
@@ -514,11 +521,12 @@ transition: 500ms;
     .logo{
       padding-left: 2rem;
       cursor: pointer;
-      min-height: 1.5rem;
-      min-width:1.5rem;
+      min-height: 1rem;
+      min-width:1rem;
     }
+
     h1{
-      font-size: 2.2rem;
+      font-size: 1.9rem;
       margin-left: 2rem;
     }
     .help-btn{
@@ -537,9 +545,10 @@ transition: 500ms;
     }
 
     .account-btn{
+      position: relative;
       width:2rem;
       height:2rem;
-      margin-left: 2rem;
+      margin-left: 1rem;
       cursor: pointer;
       border-radius: 5rem;
     }
@@ -553,21 +562,21 @@ transition: 500ms;
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(3, auto);
+  position: relative;
 }
 .boardWrapper{
-  width: 26rem;
-  height: 32.72rem;
+  width: 24rem;
+  height: 30rem;
   flex-shrink: 0;
   border-radius: 2.25rem;
   background: #1D2338;
   box-shadow: 0rem 0.2rem 1rem 1rem rgba(0, 0, 0, 0.17);
   display: grid;
-  position:relative;
+  position:absolute;
   justify-content: center;
   align-content: center;
   z-index:0;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2rem;
 }
 
 #playButton{
@@ -586,7 +595,6 @@ transition: 500ms;
   font-weight: 600;
   line-height: normal;
   margin: auto;
-  z-index: 1000;
 }
 
 .cell {
@@ -604,11 +612,11 @@ transition: 500ms;
 .modes{
   border-radius: 0.6rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   font-family: Montserrat;
   max-width:2rem;
   position:absolute;
+  margin-top: 1rem;
 }
 .modes svg{
   min-width: 0.8rem;
@@ -628,6 +636,7 @@ transition: 500ms;
   text-align: left;
   font-size: 1rem;
   margin-left: 0.5rem;
+  margin-top: 25rem;
 }
 .left-screen-options{
   margin-left: 1rem;
@@ -651,18 +660,13 @@ transition: 500ms;
   border-color: #ffffff;
   border-style: solid;
   border-radius: 1.8rem;
-  width:3rem;
-  height:3rem;
+  width:4rem;
+  height:3.5rem;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
   transition: 400ms ease;
   margin-left: 2rem;
 }
-.radio-lb:first-of-type{
-  margin-top: 1rem;
-}
-.radio-ip:checked{
-  z-index: -100;
-}
+
 .player-option{
 display: none;
 }
@@ -724,5 +728,15 @@ display: none;
   @media (max-width:998px){
     :root{
       font-size: 95%;
+    }
+  }
+  @media (max-width:383px){
+    h1{
+      font-size: 1.3rem;
+    }
+  }
+  @media (max-width:335px){
+    h1{
+      font-size: 1rem;
     }
   }
