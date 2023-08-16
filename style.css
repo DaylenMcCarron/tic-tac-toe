@@ -564,9 +564,10 @@ transition: 500ms;
   grid-template-columns: repeat(3, auto);
   position: relative;
 }
+
 .boardWrapper{
-  width: 24rem;
-  height: 30rem;
+  width: 16rem;
+  height: 20rem;
   flex-shrink: 0;
   border-radius: 2.25rem;
   background: #1D2338;
@@ -576,7 +577,7 @@ transition: 500ms;
   justify-content: center;
   align-content: center;
   z-index:0;
-  margin-left:1rem;
+  margin-left:1.5rem;
   padding: 0;
 }
 
@@ -599,8 +600,8 @@ transition: 500ms;
 }
 
 .cell {
-  width: 8rem;
-  height: 8rem;
+  width: 5rem;
+  height: 5rem;
   border: 0.0625rem solid #B3B3B3;
   display: flex;
   justify-content: center;
@@ -740,4 +741,5 @@ display: none;
     h1{
       font-size: 1rem;
     }
+
   }
