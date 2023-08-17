@@ -508,7 +508,7 @@ body::-webkit-scrollbar-thumb{
 
     .headerStyle{
       display:flex;
-      position: sticky;
+      position: fixed;
       width:100%;
       align-items: center;
       background: rgb(28,35,57);
@@ -566,18 +566,18 @@ body::-webkit-scrollbar-thumb{
 }
 
 .boardWrapper{
-  width: 16rem;
-  height: 20rem;
+  margin-top: 5rem;
+  width: 24rem;
+  height: 30rem;
   flex-shrink: 0;
   border-radius: 2.25rem;
   background: #1D2338;
-  box-shadow: 0rem 0.2rem 1rem 1rem rgba(0, 0, 0, 0.17);
   display: grid;
   position:absolute;
   justify-content: center;
   align-content: center;
   z-index:0;
-  margin-left:1.5rem;
+  margin-left:0.5rem;
   padding: 0;
 }
 
@@ -600,8 +600,8 @@ body::-webkit-scrollbar-thumb{
 }
 
 .cell {
-  width: 5rem;
-  height: 5rem;
+  width: 7.5rem;
+  height: 7.5rem;
   border: 0.0625rem solid #B3B3B3;
   display: flex;
   justify-content: center;
@@ -638,7 +638,7 @@ body::-webkit-scrollbar-thumb{
   text-align: left;
   font-size: 1rem;
   margin-left: 0.5rem;
-  margin-top: 25rem;
+  margin-top: 30rem;
 }
 .left-screen-options{
   margin-left: 1rem;
@@ -687,24 +687,16 @@ display: none;
 }
 
 .player2{
-  z-index:0;
-  position: absolute;
-  padding-top: 7rem;
   transition: 1s ease;
 }
 
 .plyr-X{
-  margin-top: 5rem;
   max-width: 4rem;
   transition: 1s ease;
-  margin-left: 0.5rem;
 }
 .plyrO{
   max-width: 4rem;
-  z-index:0;
-  position: absolute;
   transition: 1s ease;
-  margin-left: 0.5rem;
 }
 
 
@@ -724,6 +716,17 @@ display: none;
   font-size:0.8rem;
   transition: 1s ease;
 }
+ .playernames{
+  display: flex;
+  margin-top: 35rem;
+ }
+ .pbox1{
+  margin-left:1rem;
+ }
+ .pbox2{
+  position:absolute;
+  right:5rem;
+ }
 
   }
 
