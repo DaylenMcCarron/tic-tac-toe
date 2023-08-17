@@ -572,6 +572,8 @@ body::-webkit-scrollbar-thumb{
   flex-shrink: 0;
   border-radius: 2.25rem;
   background: #1D2338;
+  background: #1D2338;
+  box-shadow: 0rem 0.06rem 1rem 1rem rgba(0, 0, 0, 0.17);
   display: grid;
   position:absolute;
   justify-content: center;
@@ -690,14 +692,6 @@ display: none;
   transition: 1s ease;
 }
 
-.plyr-X{
-  max-width: 4rem;
-  transition: 1s ease;
-}
-.plyrO{
-  max-width: 4rem;
-  transition: 1s ease;
-}
 
 
 .twoPlyrTitle{
@@ -716,12 +710,10 @@ display: none;
   font-size:0.8rem;
   transition: 1s ease;
 }
- .playernames{
-  display: flex;
-  margin-top: 35rem;
- }
+
  .pbox1{
   margin-left:1rem;
+  z-index: -100;
  }
  .pbox2{
   position:absolute;
