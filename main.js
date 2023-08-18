@@ -139,7 +139,6 @@ function twoPlayer() {
   if (isX == true) {
     myTurn = true
   }
-  setInterval(update, 2000); // Change the interval duration to 2000 ms
 
   circleTurn = false
   cellElements.forEach(cell => {
@@ -194,7 +193,6 @@ function handleClick(e) {
       }
     }
   }
-  console.log(xArray);
 }
 
 function computerMove() {
@@ -216,22 +214,8 @@ function computerMove() {
       setBoardHoverClass();
     }
   }
-  console.log(yArray)
-  console.log(oppArray)
 }
 
-// Rest of your code...
-
-
-// Rest of your code...
-
-
-// Rest of your existing code...
-
-
-function clickedFalse() {
-  clicked = "f";
-}
 
 function storeArrayOnClick(cell, currentClass) {
   if (currentClass == X_CLASS) {
@@ -239,16 +223,6 @@ function storeArrayOnClick(cell, currentClass) {
   } else {
     yArray.push(cell.innerHTML);
   }
-}
-
-function storeArray(cell, currentClass) {
-  if (isLocalMultiplayer) {
-  if (currentClass == X_CLASS) {
-    xArray.push(cell.innerHTML);
-  } else {
-    yArray.push(cell.innerHTML);
-  }
-}
 }
 
 function endGame(draw) {
@@ -287,7 +261,6 @@ function setBoardHoverClass() {
   }
 
 function checkWin(currentClass) {
-  console.log(currentClass);
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
       return cellElements[index].classList.contains(currentClass)
@@ -295,81 +268,6 @@ function checkWin(currentClass) {
   })
 }
 
-function opponentPlay() {
-
-  if (isX && (!arraysMatch(oppArray,yArray))) {
-    myTurn = !myTurn;
-    console.log("running")
-      oppArray = yArray.slice();
-      const lastElement = (oppArray[oppArray.length - 1]);
-      const oppCell = document.getElementById(lastElement)
-      handleInput(oppCell);
-    
-  } else if (isX && (!arraysMatch(oppArray,xArray))) {
-     (oppArray != xArray) 
-      oppArray = xArray;
-      const lastElement = oppArray[oppArray.length - 1];
-      const oppCell = document.getElementById(lastElement)
-      handleInput(oppCell);
-    
-  }
-}
 
 
-
-
-function update() {
-  if ((!isLocalMultiplayer) && (!myTurn) && oppEnteredValue) {
-    oppEnteredValue = false;
-    opponentPlay();
-  }
-}
-
-
-//push  to oppPlayer
-const pushButton = document.getElementById("testButton")
-pushButton.addEventListener("click", () => {
-  aiBot();
-})
-
-function arraysMatch(arr1, arr2) {
-  if (arr1.length !== arr2.length) {
-    return false;
-  }
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
-    }
-  }
-  return true;
-}
-
-let inputArr = [];
-function aiBot() {
-  if (myTurn) {
-    return; // If it's still the human's turn, don't execute AI moves
-  }
-
-  const availableCells = Array.from(cellElements).filter(cell => {
-    return !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS);
-  });
-
-  if (availableCells.length === 0) {
-    return; // No available cells to play
-  }
-
-  const randomIndex = Math.floor(Math.random() * availableCells.length);
-  const aiCell = availableCells[randomIndex];
-  
-  setTimeout(() => {
-    handleInput(aiCell);
-  }, 1000); // Add a small delay to make AI moves more visible
-
-  oppEnteredValue = true;
-}
-
-
-
-
-export { circleTurn, clicked, clickedFalse, xArray, yArray };
+export { circleTurn, clicked, xArray, yArray };
