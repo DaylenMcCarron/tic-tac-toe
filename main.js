@@ -1,11 +1,9 @@
 let xArray = [];
 let yArray = [];
-let oppArray = [];
-let myTurn;
-let oppEnteredValue = false;
-let isLocalMultiplayer = false;
+
+let connected = false;
 let isX = true;
-let clicked = "f";
+let clicked = false;
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const WINNING_COMBINATIONS = [
@@ -23,7 +21,6 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-const playB = document.querySelector(".play-btn")
 const boardc = document.querySelector(".boardWrapper")
 const quitB = document.querySelector(".quit-btn")
 const SingPbtn = document.getElementById('sing-plyr-opt');
@@ -84,6 +81,16 @@ document.getElementById("playButton").addEventListener("click", function(){
     player1.innerHTML = p1value;
     player2.innerHTML = p2value;
   }
+
+  else if (MultiPbtn.checked) {
+    if (connected) {
+    boardc.classList.toggle("moveRight");
+    players.classList.remove('hidden');
+    multiPlayer();
+    } else {
+      console.log("Please Join a room")
+    }
+  }
 });
 document.getElementById("quitButton").addEventListener("click", beforeGame);
 
@@ -136,9 +143,6 @@ function beforeGame() {
 function twoPlayer() {
   xArray = [];
   yArray = [];
-  if (isX == true) {
-    myTurn = true
-  }
 
   circleTurn = false
   cellElements.forEach(cell => {
@@ -153,10 +157,23 @@ function twoPlayer() {
   document.getElementById("lso").style.display = "none";
 }
 
+function multiPlayer() {
+
+  circleTurn = false
+  cellElements.forEach(cell => {
+    cell.classList.remove(X_CLASS)
+    cell.classList.remove(CIRCLE_CLASS)
+    cell.removeEventListener('click', handleClick)
+    cell.addEventListener('click', handleClick, { once: true })
+  })
+  setBoardHoverClass()
+  winningMessageElement.classList.remove('show')
+  document.getElementById("playButton").style.display = "none";
+  document.getElementById("lso").style.display = "none";
+}
 
 //One Player
 function onePlayer() {
-  myTurn = true;
   circleTurn = false;
 
   cellElements.forEach(cell => {
@@ -174,11 +191,22 @@ function onePlayer() {
 
 
 function handleClick(e) {
+  if (isX) {
+    if (circleTurn && connected) {
+      console.log("Wait for opponent");
+      return;
+    }
+  } else {
+    if (!circleTurn && connected) {
+      console.log("Wait for opponent");
+      return;
+    }
+  }
   const cell = e.target;
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
   storeArrayOnClick(cell, currentClass)
   placeMark(cell, currentClass)
-  if (myTurn) {
+  
     placeMark(cell, currentClass);
     if (checkWin(currentClass)) {
       endGame(false);
@@ -191,11 +219,35 @@ function handleClick(e) {
       if(SingPbtn.checked){
       setTimeout(computerMove,10);
       }
+    
+  }
+  clicked = true;
+}
+
+function opponentMove() {
+  const opponentInput = 4;
+
+  const emptyCells = [...cellElements].filter(cell => !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS));
+  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+
+  if (emptyCells.length > 0) {
+    const fillEmptyCell = emptyCells[opponentInput];
+    placeMark(fillEmptyCell, currentClass);
+    fillEmptyCell.removeEventListener('click', handleClick);
+
+    if (checkWin(currentClass)) {
+      endGame(false);
+    } else if (isDraw()) {
+      endGame(true);
+    } else {
+      swapTurns();
+      setBoardHoverClass();
     }
   }
 }
 
 function computerMove() {
+  console.log("comp move")
   const emptyCells = [...cellElements].filter(cell => !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS));
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
 
@@ -218,11 +270,12 @@ function computerMove() {
 
 
 function storeArrayOnClick(cell, currentClass) {
-  if (currentClass == X_CLASS) {
+  if (currentClass == X_CLASS && isX) {
     xArray.push(cell.innerHTML);
-  } else {
+  } else if (currentClass == CIRCLE_CLASS && !isX) {
     yArray.push(cell.innerHTML);
   }
+  console.log(xArray + "    "+ yArray)
 }
 
 function endGame(draw) {
@@ -269,5 +322,14 @@ function checkWin(currentClass) {
 }
 
 
+function setIsX (bool) {
+  connected = true;
+  isX = bool;
+}
 
-export { circleTurn, clicked, xArray, yArray };
+function clickedFalse() {
+  clicked = false;
+}
+
+
+export { circleTurn, clicked, xArray, yArray, setIsX, isX, clickedFalse };
