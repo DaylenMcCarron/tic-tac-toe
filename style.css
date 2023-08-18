@@ -632,7 +632,7 @@ body::-webkit-scrollbar-thumb{
   font-family: Montserrat;
   max-width:2rem;
   position:absolute;
-  margin-top: 1rem;
+  margin-top: 0.1rem;
 }
 .modes svg{
   min-width: 0.8rem;
@@ -654,6 +654,7 @@ body::-webkit-scrollbar-thumb{
   margin-left: 0.5rem;
   padding-top: 17rem;
 }
+
 .left-screen-options{
   margin-left: 1rem;
   width:26rem;
