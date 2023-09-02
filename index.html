@@ -13,10 +13,10 @@
 </head>
 <body>
   <script type="module">
-    import {xArray, yArray, clicked, clickedFalse, circleTurn} from './main.js'
+    import {xArray, yArray, clicked, circleTurn, setIsX, isX, clickedFalse, opponentPlayedTrue} from './main.js'
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import { getDatabase , ref, set, onDisconnect, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+import { getDatabase , ref, set, get, child, onDisconnect, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,8 +47,8 @@ let playerId;
 let playerRef;
 let playerNo = 0;
 let G_RoomId;
-let isCircle;
-
+let move;
+let serverMove;
 
 //USER INFO
 let username = "";
@@ -62,7 +62,6 @@ let playerNum = "";
 
   
   function saveGuestName() {
-    console.log('saving guest');
     if (username == "") {
         username = document.getElementById('guestName').value;
         document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
@@ -71,7 +70,6 @@ let playerNum = "";
   function createGuest() {
     saveGuestName();
     onAuthStateChanged(auth , (user) => {
-      console.log(user)
         if (user) {
           //loggedin
           playerId = user.uid;
@@ -82,7 +80,6 @@ let playerNum = "";
             id: playerId,
             name: username,       
           }
-          console.log(playerNo)
           set (playerRef,
             playerInfo
           )
@@ -102,10 +99,14 @@ let playerNum = "";
   }
 
     function createRoom() {
+      if(!username) {
+        console.log("Log in before creating room")
+        return;
+      }
+      setIsX(true);
         const allRoomRef = ref(database, `rooms`);
 
         onAuthStateChanged(auth , (user) => {
-          console.log(user + "First Auth")
           if (user) {
 
             //In room
@@ -140,8 +141,9 @@ let playerNum = "";
 
     const joinRoomBtn = document.getElementById("joinRoomBtn");
     joinRoomBtn.addEventListener("click", () => {
+      
+      setIsX(false);
       onAuthStateChanged(auth , (user) => {
-          console.log(user + "First Auth")
           if (user) {
 
             //In room
@@ -160,7 +162,6 @@ let playerNum = "";
             onDisconnect(player2Ref).remove();
             onDisconnect(posRef).remove();
 
-
             } else {
                 //loggedout
                 console.log("User not authenticated.");
@@ -174,26 +175,34 @@ let playerNum = "";
           if (user) {
             //In room
             let posRef = ref(database,`rooms/${G_RoomId}/posY`);
-
+            let moveRef = ref(database,`rooms/${G_RoomId}/move`);
+            let roomRef = ref(database, `rooms/${G_RoomId}`)
+            
             // add position data to room
             set(posRef, yArray)
-            onDisconnect(posRef).remove();
+            set(moveRef, move)
+            onDisconnect(posRef).remove(roomRef);
             } else {
                 //loggedout
                 console.log("User not authenticated.");
             }
         });
     }
+
+
 
     function updatePlayerXPos() {
       onAuthStateChanged(auth , (user) => {
           if (user) {
             //In room
             let posRef = ref(database,`rooms/${G_RoomId}/posX`);
-
+            let moveRef = ref(database,`rooms/${G_RoomId}/move`);
+            let roomRef = ref(database, `rooms/${G_RoomId}`)
             // add position data to room
             set(posRef, xArray)
-            onDisconnect(posRef).remove();
+            set(moveRef, move)
+            console.log(move + " Move Value")
+            onDisconnect(posRef).remove(roomRef);
             } else {
                 //loggedout
                 console.log("User not authenticated.");
@@ -201,28 +210,75 @@ let playerNum = "";
         });
     }
 
+    function getXPos() {
+      get(child(database, `rooms/${G_RoomId}/move`)).then((snapshot) => {
+      if (snapshot.exists()) {
+      } else {
+        console.log("No data available");
+      } 
+      }).catch((error) => {
+        console.error(error);   
+      });
+    }
+
+    function getYPos() {
+      const moveRef = `rooms/${G_RoomId}/move`;
+      onValue(moveRef, (snapshot) => {
+  const data = snapshot.val();
+  console.log(data)
+});
+    }
+
+    //checks for change in moveVariavle
+    getServerMove();
+    function getServerMove() {
+      const moveRef = ref(database,`rooms/${G_RoomId}/move`);
+      onValue(moveRef, (snapshot) => {
+        const data = snapshot.val();
+        serverMove = data;
+      })
+    
+    }
+
+    document.getElementById("Test-1").addEventListener("click", TEMPsetServerMove);
+    let SETmove = 3;
+    function TEMPsetServerMove() {
+      SETmove = SETmove + 1;
+      onAuthStateChanged(auth , (user) => {
+          if (user) {
+            //In room
+            let moveRef = ref(database,`rooms/${G_RoomId}/move`);
+            
+            // add position data to room
+            set(moveRef, SETmove)
+            onDisconnect(moveRef).remove();
+            } else {
+                //loggedout
+                console.log("User not authenticated.");
+            } 
+        });
+      }
+      
+    function setServerMove() {
+      onAuthStateChanged(auth , (user) => {
+          if (user) {
+            //In room
+            let moveRef = ref(database,`rooms/${G_RoomId}/move`);
+            
+            // add position data to room
+            set(moveRef, move)
+            onDisconnect(posRef).remove();
+            } else {
+                //loggedout
+                console.log("User not authenticated.");
+            } 
+        });
+    }
 
 
     function joinedRoom() { 
 
-      
-      function initGame() {
-        const allPlayerRef = ref(database,`rooms/${G_RoomId}`);
-        console.log(allPlayerRef + "checking")
-
-        onValue(allPlayerRef, (snapshot) => {
-          // fires when change occurs
-          const addedPlayer = snapshot.val();
-          updatePlayer(addedPlayer);
-        })
-        onChildAdded(allPlayerRef,(snapshot) => {
-        })
-      }
-
       function updatePlayer(addedPlayer) {
-        console.log(addedPlayer)
-        document.getElementById("Player1").innerHTML = addedPlayer.player1.name;
-        document.getElementById("Player2").innerHTML = addedPlayer.player2.name;
         
       }
 
@@ -233,7 +289,6 @@ let playerNum = "";
         console.log(errorCode, errorMessage)
         });
 
-        initGame();
     };
 
     
@@ -243,15 +298,30 @@ let playerNum = "";
   //run update every 1 second
   setInterval(update, 1000);
   function update() {
-    if (clicked == "t") {
+    if (clicked) {
       clickedFalse();
-      if (isCircle) {
-        updatePlayerYPos();
-            } else {
+      if(isX) {
+        move = parseInt(xArray.slice(-1), 10);
+        serverMove = move;
         updatePlayerXPos();
+      } else {
+        move = parseInt(yArray.slice(-1), 10);
+        serverMove = move
+        updatePlayerYPos();
       }
+      
     }
+    if (move != serverMove) {
+      console.log(serverMove + " SM In Update")
+      opponentPlayedTrue(serverMove);
+      move = serverMove;
+    }
+
+
   }
+
+  
+  document.getElementById("playButton").addEventListener("click", getServerMove);
   </script>
 
   <!-- html starts here -->
@@ -419,19 +489,20 @@ let playerNum = "";
 
 <div class="boardWrapper right-screen">
   <div class="board" id="board">
-    <div class="cell" id="1"data-cell>1</div>
-    <div class="cell" id="2"data-cell>2</div>
-    <div class="cell" id="3"data-cell>3</div>
-    <div class="cell" id="4"data-cell>4</div>
-    <div class="cell" id="5"data-cell>5</div>
-    <div class="cell" id="6"data-cell>6</div>
-    <div class="cell" id="7"data-cell>7</div>
-    <div class="cell" id="8"data-cell>8</div>
-    <div class="cell" id="9"data-cell>9</div>
+    <div class="cell" id="1"data-cell name="cell">1</div>
+    <div class="cell" id="2"data-cell name="cell">2</div>
+    <div class="cell" id="3"data-cell name="cell">3</div>
+    <div class="cell" id="4"data-cell name="cell">4</div>
+    <div class="cell" id="5"data-cell name="cell">5</div>
+    <div class="cell" id="6"data-cell name="cell">6</div>
+    <div class="cell" id="7"data-cell name="cell">7</div>
+    <div class="cell" id="8"data-cell name="cell">8</div>
+    <div class="cell" id="9"data-cell name="cell">9</div>
   </div>
   <button id="playButton" class="play-btn">Play</button>
 </div>
-
+<button id="Test-1">TEMPsetServerMove</button>
+<button id="Test-2">Get servermove</button>
 </div> <!--end of play area-->
 
   <div class="winning-message" id="winningMessage">
@@ -439,6 +510,5 @@ let playerNum = "";
     <button id="restartButton">Restart</button>
     <button id="quitButton" class="quit-btn">Quit</button>
   </div>
-
 </body>
 </html>
