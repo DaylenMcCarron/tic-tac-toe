@@ -240,25 +240,7 @@ let playerNum = "";
     
     }
 
-    document.getElementById("Test-1").addEventListener("click", TEMPsetServerMove);
-    let SETmove = 3;
-    function TEMPsetServerMove() {
-      SETmove = SETmove + 1;
-      onAuthStateChanged(auth , (user) => {
-          if (user) {
-            //In room
-            let moveRef = ref(database,`rooms/${G_RoomId}/move`);
-            
-            // add position data to room
-            set(moveRef, SETmove)
-            onDisconnect(moveRef).remove();
-            } else {
-                //loggedout
-                console.log("User not authenticated.");
-            } 
-        });
-      }
-      
+
     function setServerMove() {
       onAuthStateChanged(auth , (user) => {
           if (user) {
@@ -465,8 +447,6 @@ let playerNum = "";
     <div id="display-players" class="player-option hidden">
       <p id="Player1">Player 1</p>
       <p id="Player2">Player 2</p>
-      <input type="text" id="testInput" placeholder="Testing Input">
-      <button id="testButton">Test Button</button>
     </div>
   </div>
 
@@ -501,8 +481,6 @@ let playerNum = "";
   </div>
   <button id="playButton" class="play-btn">Play</button>
 </div>
-<button id="Test-1">TEMPsetServerMove</button>
-<button id="Test-2">Get servermove</button>
 </div> <!--end of play area-->
 
   <div class="winning-message" id="winningMessage">
