@@ -1,9 +1,11 @@
 let xArray = [];
 let yArray = [];
-
+let opponentInput;
 let connected = false;
+let move;
 let isX = true;
 let clicked = false;
+let opponentPlayed = false;
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const WINNING_COMBINATIONS = [
@@ -16,7 +18,7 @@ const WINNING_COMBINATIONS = [
   [0, 4, 8],
   [2, 4, 6]
 ]
-const cellElements = document.querySelectorAll('[data-cell]')
+const cellElements = document.getElementsByName('cell')
 const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
@@ -207,7 +209,6 @@ function handleClick(e) {
   storeArrayOnClick(cell, currentClass)
   placeMark(cell, currentClass)
   
-    placeMark(cell, currentClass);
     if (checkWin(currentClass)) {
       endGame(false);
     } else if (isDraw()) {
@@ -219,19 +220,51 @@ function handleClick(e) {
       if(SingPbtn.checked){
       setTimeout(computerMove,10);
       }
+      else if (MultiPbtn.checked) {
+        checkOpponentPlayed();
+      }
     
   }
   clicked = true;
 }
 
-function opponentMove() {
-  const opponentInput = 4;
 
-  const emptyCells = [...cellElements].filter(cell => !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS));
+document.getElementById("playButton").addEventListener('click', checkOpponentPlayed)
+
+function opponentPlayedTrue(serverMove) {
+  move = serverMove;
+  opponentPlayed = true;
+}
+
+function checkOpponentPlayed() {
+  if(opponentPlayed === false) {
+    console.log("is checking")
+    window.setTimeout(checkOpponentPlayed, 1000);
+  } else {
+    /* do something*/
+    opponentMove();
+    console.log("Opp move should run")
+    opponentPlayed = false;
+  }
+}
+
+function opponentMove() {
+  opponentInput = move;
+  if (opponentInput == NaN) {
+    return
+  }
+  console.log(opponentInput + "OPPINENENT INPUT")
+  if (!opponentInput) {
+    endGame(false);
+  }
+
+  const emptyCells = cellElements
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
 
   if (emptyCells.length > 0) {
-    const fillEmptyCell = emptyCells[opponentInput];
+    const fillEmptyCell = emptyCells[(opponentInput - 1)];
+    console.log(fillEmptyCell)
+    console.log(opponentInput)
     placeMark(fillEmptyCell, currentClass);
     fillEmptyCell.removeEventListener('click', handleClick);
 
@@ -275,18 +308,23 @@ function storeArrayOnClick(cell, currentClass) {
   } else if (currentClass == CIRCLE_CLASS && !isX) {
     yArray.push(cell.innerHTML);
   }
-  console.log(xArray + "    "+ yArray)
+  console.log(xArray + "    "+ yArray + "BRUHTER")
 }
 
 function endGame(draw) {
-  if (draw) {
-    winningMessageTextElement.innerText = 'Draw!'
-  } else {
-    winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
+  setTimeout(() => {
+    
+    if (draw) {
+      winningMessageTextElement.innerText = 'Draw!'
+    } else {
+      winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
+    }
+    winningMessageElement.classList.add('show')
+    xArray = [];
+    yArray = [];
   }
-  winningMessageElement.classList.add('show')
-  xArray = [];
-  yArray = [];
+    , 1000)
+  opponentPlayed == false;
 }
 
 function isDraw() {
@@ -332,4 +370,4 @@ function clickedFalse() {
 }
 
 
-export { circleTurn, clicked, xArray, yArray, setIsX, isX, clickedFalse };
+export { circleTurn, clicked, xArray, yArray, setIsX, isX, clickedFalse, opponentPlayedTrue };
