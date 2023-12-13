@@ -249,7 +249,6 @@ transition: 500ms;
     .headerStyle{
       display:flex;
       align-items: center;
-      margin-left: 5rem;
       background: rgb(28,35,57);
       max-height: 6.45rem;
       background: linear-gradient(180deg, rgba(28,35,57,1) 85%, rgba(39,49,85,0.1727284663865546) 100%);
@@ -263,7 +262,7 @@ transition: 500ms;
     }
     h1{
       font-size: 3.5rem;
-      margin-left: 2rem;
+      margin-left: 3rem;
     }
     .help-btn{
       background-color: none;
@@ -490,6 +489,7 @@ body::-webkit-scrollbar-thumb{
   @media (max-width:768px){
 
     .navbar{
+      margin-top: 10rem;
       bottom:0;
       width:100vw;
       margin-left: 0;
