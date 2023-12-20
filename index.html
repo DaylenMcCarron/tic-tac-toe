@@ -57,45 +57,47 @@ let playerNum = "";
 
 
     //Event Listeners
-    document.getElementById("createGuest").addEventListener("click", createGuest);
+    document.getElementById("guestName").addEventListener("keydown", createGuest);
     document.getElementById("createRoom").addEventListener("click", createRoom);
 
   
-  function saveGuestName() {
+  function saveGuestName(event) {
     if (username == "") {
         username = document.getElementById('guestName').value;
         document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
     }
   }
-  function createGuest() {
-    saveGuestName();
-    onAuthStateChanged(auth , (user) => {
-        if (user) {
-          //loggedin
-          playerId = user.uid;
-          playerRef = ref(database, `players/${playerId}`);
+  function createGuest(event) {
+    if(event.key == "Enter"){
+      saveGuestName();
+      onAuthStateChanged(auth , (user) => {
+          if (user) {
+            //loggedin
+            playerId = user.uid;
+            playerRef = ref(database, `players/${playerId}`);
 
-          const playerInfo = {
-            // info of user
-            id: playerId,
-            name: username,       
+            const playerInfo = {
+              // info of user
+              id: playerId,
+              name: username,       
+            }
+            set (playerRef,
+              playerInfo
+            )
+            onDisconnect(playerRef).remove();
+
+          } else {
+            //loggedout
           }
-          set (playerRef,
-            playerInfo
-          )
-          onDisconnect(playerRef).remove();
+          });
 
-        } else {
-          //loggedout
-        }
-        });
+          signInAnonymously(auth).catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
 
-        signInAnonymously(auth).catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        console.log(errorCode, errorMessage)
-        });
+          console.log(errorCode, errorMessage)
+          });
+    } 
   }
 
     function createRoom() {
@@ -427,12 +429,9 @@ let playerNum = "";
     </div>
   
     <div id="multi-player" class="player-option hidden">
-        <br><p>Online Multiplayer</p>
         <div>
-          <p>Guest:</p>
-          <input type="text" placeholder="Name" id="guestName">
-          <button id="createGuest" class="ok-btn" >Ok</button>
-          <p id="displayUsername">Bruh</p>
+          <input class="playerName" type="text" value="Guest" id="guestName">
+          <p id="displayUsername">Welcome Guest</p>
         </div>
 
         <div id="connect-room">
