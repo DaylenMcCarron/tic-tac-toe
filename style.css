@@ -317,7 +317,6 @@ transition: 500ms;
 
 .right-screen{
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 .left-screen{
@@ -396,7 +395,7 @@ transition: 500ms;
   fill:#ffffff;
 }
 
-.left-stuff, .two-plyr, .multi-plyr, .display-players{
+.left-stuff, .two-player, .multi-player, .display-players{
   margin-left:10rem;
   color: #fff;
 }
@@ -434,7 +433,7 @@ body::-webkit-scrollbar-thumb{
   transition: 1s ease;
 }
 .player-option{
-  margin-left: 18rem;
+  margin: 10rem;
 }
 .player1{
   margin-left:9rem;
@@ -650,7 +649,7 @@ body::-webkit-scrollbar-thumb{
   fill:#ffffff;
 }
 
-.left-stuff, .two-plyr, .multi-plyr, .display-players{
+.left-stuff, .display-players{
   color: #fff;
 }
 .chooseText{
@@ -661,10 +660,8 @@ body::-webkit-scrollbar-thumb{
 }
 
 .left-screen-options{
-  margin-left: 1rem;
   width:26rem;
   border-radius: 2rem;
-  top:7rem;
   height: 24rem;
   position: relative;
 }
