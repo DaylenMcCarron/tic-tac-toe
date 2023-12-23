@@ -116,7 +116,8 @@ let playerNum = "";
             const roomId = "room_" + code;
             let roomRef = ref(database,`rooms/${roomId}`);
             G_RoomId = roomId;
-            document.getElementById("displayCode").innerHTML = code;
+            var textcode = document.getElementById("roomCode")
+            textcode.value = code;
             joinedRoom();
            
 
@@ -461,17 +462,15 @@ let playerNum = "";
       
         <div id="multi-player" class="player-option hidden">
             <div>
-              <input class="playerName" type="text" value="Guest" id="guestName">
-              <p id="displayUsername">Welcome Guest</p>
+              <input class="playerName" type="text" placeholder="Enter Name" id="guestName">
+              <p id="displayUsername"></p>
             </div>
     
             <div id="connect-room">
                 <p>Connect to a room card</p>
-                <button id="createRoom">Create Room</button>
-                <input type="text" placeholder="Room Code" id="roomCode">
-                <button id="joinRoomBtn">Join Room</button>
-                <button id="random">Random</button>
-                <p id="displayCode"></p>
+                <button id="createRoom" class="mp-button">Create Room</button>
+                <input class="playerName" type="text" placeholder="Room Code" id="roomCode">
+                <button id="joinRoomBtn" class="mp-button">Join Room</button>
           </div>
         </div>
         <div id="display-players" class="player-option hidden">
