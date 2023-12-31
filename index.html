@@ -323,10 +323,22 @@ let playerNum = "";
     hideOtherPages('about-page')
   })
 
+  //Profile Page
+  document.getElementById('profile-btn').addEventListener("click",()=> {
+    document.getElementById('profile-page').classList.remove('hidden');
+    hideOtherPages('profile-page')
+  })
+
+  //Theme Page
+  document.getElementById('theme-btn').addEventListener("click",()=> {
+    document.getElementById('theme-page').classList.remove('hidden');
+    hideOtherPages('theme-page')
+  })
+
 
 
   function hideOtherPages(notHide) {
-    let pageIds = ['game-page','about-page'];
+    let pageIds = ['game-page','about-page','theme-page','profile-page'];
     let num = 0;
     while (num < pageIds.length) {
       num++;
@@ -367,7 +379,7 @@ let playerNum = "";
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" id="theme-btn">
                 <svg viewBox="0 0 48 48" id="a" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" stroke-width="2.448"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.d{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;}</style></defs><path id="b" class="d" d="m13.0732,4.5h21.8539c1.4254,0,2.5729,1.1475,2.5729,2.5729l-.4639,14.9174H10.7828s-.2824-14.9174-.2824-14.9174c-.0241-1.4252,1.1475-2.5729,2.5729-2.5729Z"></path><path id="c" class="d" d="m37.0361,21.9903v4.6314c.1723,1.8848-2.1328,1.8623-3.6279,1.8701-5.4937.0283-6.6339,2.5669-6.4692,5.2912.1555,2.5716.1966,2.8977.2319,4.3489.085,3.4874-1.5951,5.3681-3.2616,5.3681s-3.3465-1.8807-3.2615-5.3681c.0354-1.4513.0765-1.7774.2319-4.3489.1647-2.7243-.9755-5.263-6.4692-5.2912-1.495-.0078-3.8002.0148-3.6279-1.8701v-4.6314"></path></g></svg>
                   <span class="link-text">Themes</span>
             </a>
@@ -406,7 +418,7 @@ let playerNum = "";
     <div class="help-btn">
         <p class="help-msg">Need Help?</p>
     </div>
-    <div>
+    <div id="profile-btn">
         <svg class="account-btn" xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
             <circle cx="25.5" cy="25.5" r="25.5" fill="#B5A9C8"/>
             <path d="M25.5001 12.7693C27.0557 12.7693 28.5475 13.3872 29.6475 14.4872C30.7475 15.5872 31.3654 17.0791 31.3654 18.6347C31.3654 20.1903 30.7475 21.6822 29.6475 22.7821C28.5475 23.8821 27.0557 24.5001 25.5001 24.5001C23.9445 24.5001 22.4526 23.8821 21.3526 22.7821C20.2526 21.6822 19.6347 20.1903 19.6347 18.6347C19.6347 17.0791 20.2526 15.5872 21.3526 14.4872C22.4526 13.3872 23.9445 12.7693 25.5001 12.7693ZM25.5001 29.9327C29.1717 29.9327 32.4449 30.6783 34.7631 31.8374C37.1408 33.0263 38.2308 34.4842 38.2308 35.7981V38.2308H12.7693V35.7981C12.7693 34.4842 13.8593 33.0263 16.237 31.8374C18.5552 30.6783 21.8284 29.9327 25.5001 29.9327Z" fill="#B5A9C8" stroke="#1D233A" stroke-width="2"/>
@@ -517,7 +529,19 @@ let playerNum = "";
 <div id="about-page" class="hidden">
   <div class="page-layout">
     About Page
-  </div>
+  </div> <!--End About -->
+</div>
+
+<div id="profile-page" class="hidden">
+  <div class="page-layout">
+    Profile Page
+  </div> <!--End Profile -->
+</div>
+
+<div id="theme-page" class="hidden">
+  <div class="page-layout">
+    Theme Page
+  </div> <!--End Theme -->
 </div>
 
   <div class="winning-message" id="winningMessage">
