@@ -96,6 +96,12 @@ body {
   transition: 1s ease;
   cursor: pointer;
 }
+
+#profile-btn {
+  position: relative;
+  right: 5rem
+}
+
 .nav-icon svg:nth-child(2) {
   transform: rotateY(180deg);
 }
@@ -274,6 +280,7 @@ transition: 500ms;
     h1{
       font-size: 3.5rem;
       margin-left: 3rem;
+      width: 70%;
     }
     .help-btn{
       background-color: none;
@@ -282,7 +289,7 @@ transition: 500ms;
       color:#ffffff;
       padding-left: 1rem;
       padding-right: 1rem;
-      margin-left: 42rem;
+      margin-right: 3rem;
       cursor: pointer;
       transition: 400ms ease;
     }
@@ -572,6 +579,9 @@ body::-webkit-scrollbar-thumb{
       cursor: pointer;
       border-radius: 5rem;
     }
+    .help-btn{
+      margin-right: 2rem;
+    }
 
 /*styling board*/
 
@@ -751,15 +761,24 @@ display: none;
     :root{
       font-size: 95%;
     }
+    #profile-btn {
+      position: relative;
+      right: 2rem
+    }
   }
   @media (max-width:383px){
     h1{
       font-size: 1.3rem;
     }
+    
   }
   @media (max-width:335px){
     h1{
       font-size: 1rem;
+    }
+    #profile-btn {
+      position: relative;
+      right: 0rem
     }
 
   }
