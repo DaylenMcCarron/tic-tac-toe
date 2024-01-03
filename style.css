@@ -416,6 +416,10 @@ transition: 500ms;
   margin-left:10rem;
   color: #fff;
 }
+.left-stuff {
+  margin-top: 5rem;
+}
+
 body::-webkit-scrollbar-track{
   background-color: #435181;
 }
@@ -450,7 +454,7 @@ body::-webkit-scrollbar-thumb{
   transition: 1s ease;
 }
 .player-option{
-  margin: 10rem;
+  margin-left: 10rem;
 }
 .player1{
   margin-left:9rem;
