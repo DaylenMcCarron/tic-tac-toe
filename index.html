@@ -346,6 +346,10 @@ let playerNum = "";
       document.getElementById(pageIds[num-1]).classList.add('hidden');
     }
   }
+
+  document.getElementById('createRoom').addEventListener("click",()=> {
+    document.getElementById('roomCode').classList.add('disable-input');
+  })
   
 
   </script>
@@ -478,11 +482,13 @@ let playerNum = "";
               <p id="displayUsername"></p>
             </div>
     
-            <div id="connect-room">
+            <div id="connect-room" class="connect-room">
                 <p>Connect to a room card</p>
-                <button id="createRoom" class="mp-button">Create Room</button>
                 <input class="playerName" type="text" placeholder="Room Code" id="roomCode">
-                <button id="joinRoomBtn" class="mp-button">Join Room</button>
+                <div class="mp-button-holder">
+                  <button id="createRoom" class="mp-button">Create Room</button>
+                  <button id="joinRoomBtn" class="mp-button">Join Room</button>
+                </div>
           </div>
         </div>
         <div id="display-players" class="player-option hidden">

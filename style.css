@@ -19,6 +19,11 @@ body {
   color: #F1F1F1;
 }
 
+.disable-input {
+  pointer-events:none;
+  background:#F1F1F1;
+}
+
 .playArea{
   display:grid;
   grid-template-columns: auto auto;
@@ -791,6 +796,10 @@ display: none;
       font-size: 0.8rem;
     }
 
+  }
+
+  .mp-button-holder {
+    display: flex;
   }
 
   .mp-button{
