@@ -464,6 +464,7 @@ body::-webkit-scrollbar-thumb{
 }
 .player-option{
   margin-left: 10rem;
+  height: 40vh;
 }
 .player1{
   margin-left:9rem;
@@ -498,8 +499,9 @@ body::-webkit-scrollbar-thumb{
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
-  height:3rem;
-  width: 15rem;
+  height:5vh;
+  width: 20vw;
+  max-width: 15rem;
   font-family: Montserrat;
   align-items: center;
   text-align:left;
