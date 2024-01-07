@@ -175,6 +175,7 @@ let playerNum = "";
 
     function updatePlayerYPos() {
       onAuthStateChanged(auth , (user) => {
+        if (!G_RoomId) {return}
           if (user) {
             //In room
             let posRef = ref(database,`rooms/${G_RoomId}/posY`);
@@ -196,6 +197,7 @@ let playerNum = "";
 
     function updatePlayerXPos() {
       onAuthStateChanged(auth , (user) => {
+        if (!G_RoomId) {return}
           if (user) {
             //In room
             let posRef = ref(database,`rooms/${G_RoomId}/posX`);

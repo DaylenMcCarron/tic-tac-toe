@@ -237,6 +237,7 @@ function opponentPlayedTrue(serverMove) {
 }
 
 function checkOpponentPlayed() {
+  if (connected === false) {console.log("Not Connected");return}
   if(opponentPlayed === false) {
     console.log("is checking")
     window.setTimeout(checkOpponentPlayed, 1000);
