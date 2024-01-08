@@ -149,6 +149,8 @@ body {
 }
 
 
+
+
 .winning-message {
   display: none;
   position: fixed;
@@ -325,6 +327,17 @@ transition: 500ms;
   align-items: center;
   grid-template-columns: repeat(3, auto);
 }
+
+.wrapperShadow_x {
+  box-shadow: 0px 3.425454616546631px 16.270910263061523px 15.414546012878418px rgba(255, 0, 0, 0.17);
+}
+.wrapperShadow_y {
+  box-shadow: 0px 3.425454616546631px 16.270910263061523px 15.414546012878418px rgba(0, 213, 255, 0.17);
+}
+.wrapperShadow_default {
+  box-shadow: 0px 3.425454616546631px 16.270910263061523px 15.414546012878418px rgba(0, 0, 0, 0.17);
+}
+
 .boardWrapper{
   top: 20%;
   width: 65vh;
@@ -334,7 +347,6 @@ transition: 500ms;
   flex-shrink: 0;
   border-radius: 35.967px;
   background: #1D2338;
-  box-shadow: 0px 3.425454616546631px 16.270910263061523px 15.414546012878418px rgba(0, 0, 0, 0.17);
   display: grid;
   position:relative;
 }

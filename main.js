@@ -41,6 +41,7 @@ const playerOptions = [SingP, TwoP, MultiP];
 
 beforeGame()
 hideAllPlayerOptions();
+wrapperShadow(true);
 
 SingPbtn.addEventListener('change', function() {
   if(this.checked){
@@ -72,6 +73,7 @@ document.getElementById("playButton").addEventListener("click", function(){
     players.classList.remove('hidden');
     player1.innerHTML = p1value;
     player2.innerHTML = p2value;
+    wrapperShadow(false)
   }
 
   else if(SingPbtn.checked){
@@ -82,6 +84,7 @@ document.getElementById("playButton").addEventListener("click", function(){
     players.classList.remove('hidden');
     player1.innerHTML = p1value;
     player2.innerHTML = p2value;
+    wrapperShadow(false)
   }
 
   else if (MultiPbtn.checked) {
@@ -89,6 +92,7 @@ document.getElementById("playButton").addEventListener("click", function(){
     boardc.classList.toggle("moveRight");
     players.classList.remove('hidden');
     multiPlayer();
+    wrapperShadow(false)
     } else {
       console.log("Please Join a room")
     }
@@ -217,8 +221,9 @@ function handleClick(e) {
     else {
       swapTurns();
       setBoardHoverClass();
+      wrapperShadow(false);
       if(SingPbtn.checked){
-      setTimeout(computerMove,10);
+      setTimeout(computerMove,1000);
       }
       else if (MultiPbtn.checked) {
         checkOpponentPlayed();
@@ -276,6 +281,7 @@ function opponentMove() {
     } else {
       swapTurns();
       setBoardHoverClass();
+      wrapperShadow(false);
     }
   }
 }
@@ -298,6 +304,7 @@ function computerMove() {
     } else {
       swapTurns();
       setBoardHoverClass();
+      wrapperShadow(false);
     }
   }
 }
@@ -314,7 +321,7 @@ function storeArrayOnClick(cell, currentClass) {
 
 function endGame(draw) {
   setTimeout(() => {
-    
+    wrapperShadow(true);
     if (draw) {
       winningMessageTextElement.innerText = 'Draw!'
     } else {
@@ -340,6 +347,23 @@ function placeMark(cell, currentClass) {
 
 function swapTurns() {
   circleTurn = !circleTurn
+}
+
+function wrapperShadow(defaultShadow) {
+  let wrapper = document.getElementById('boardWrapper');
+  if(defaultShadow) {
+    wrapper.classList.remove('wrapperShadow_x')
+    wrapper.classList.remove('wrapperShadow_y')
+    wrapper.classList.add('wrapperShadow_default')
+  } else if (circleTurn) {
+    wrapper.classList.remove('wrapperShadow_x')
+    wrapper.classList.remove('wrapperShadow_default')
+    wrapper.classList.add('wrapperShadow_y')
+  } else {
+    wrapper.classList.remove('wrapperShadow_y')
+    wrapper.classList.remove('wrapperShadow_default')
+    wrapper.classList.add('wrapperShadow_x')
+  }
 }
 
 function setBoardHoverClass() {
