@@ -497,20 +497,8 @@ let playerNum = "";
         </div>
       </div>
     
-    <div class="playernames hidden" id="Players">
-      <div class="pbox1">
-      <svg class="plyr-X" xmlns="http://www.w3.org/2000/svg" width="105" height="105" viewBox="0 0 105 105" fill="none">
-        <path d="M5 99.7523L99.7523 5.00001" stroke="white" stroke-width="9" stroke-linecap="round"/>
-        <path d="M5 5L99.7523 99.7523" stroke="white" stroke-width="9" stroke-linecap="round"/>
-      </svg>
-      <p class="player1" id="player-1"></p>
-      </div>
-      <div class="pbox2">
-      <svg class="plyrO" xmlns="http://www.w3.org/2000/svg" width="127" height="127" viewBox="0 0 127 127" fill="none">
-        <circle cx="63.5" cy="63.5" r="59" stroke="white" stroke-width="9"/>
-      </svg>
-      <p class="player2" id="player-2"></p>
-      </div>
+    <div class="hidden">
+      <div></div>
     </div>
   </div>
 
@@ -528,6 +516,25 @@ let playerNum = "";
         <div class="cell" id="9"data-cell name="cell">9</div>
       </div>
       <button id="playButton" class="play-btn">Play</button>
+      <div class="playernames hidden" id="Players">
+        <div class="p1_board">
+          
+            <svg class="plyr-X" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 105 105" fill="none">
+              <path d="M5 99.7523L99.7523 5.00001" stroke="white" stroke-width="9" stroke-linecap="round"/>
+              <path d="M5 5L99.7523 99.7523" stroke="white" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+            <p class="player1" id="player-1"></p>
+          
+        </div>
+        <div class="p2_board">
+          
+            <svg class="plyrO" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 127 127" fill="none">
+              <circle cx="63.5" cy="63.5" r="59" stroke="white" stroke-width="9"/>
+            </svg>
+            <p class="player2" id="player-2"></p>
+            
+        </div>
+      </div>
     </div>
   </div>
 </div> <!--end of play area-->
