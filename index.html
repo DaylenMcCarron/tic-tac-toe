@@ -56,10 +56,19 @@ let pos = [];
 let playerNum = "";
 
 
+
     //Event Listeners
     document.getElementById("guestName").addEventListener("keydown", createGuest);
     document.getElementById("createRoom").addEventListener("click", createRoom);
 
+    function setMultiplayerUsernames(user1, user2) {
+      const player1 = document.getElementById('player-1');
+      const player2 = document.getElementById('player-2');
+
+      player1.innerHTML = user1;
+      player2.innerHTML = user2;
+      console.log(user1)
+    }
   
   function saveGuestName(event) {
     if (username == "") {
@@ -67,6 +76,24 @@ let playerNum = "";
         document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
     }
   }
+
+  function getPlayerNames() {
+    let p1Username = ''
+    let p2Username = ''
+    const player1NameRef = ref(database,`rooms/${G_RoomId}/player1/name`);
+      onValue(player1NameRef, (snapshot) => {
+        p1Username = snapshot.val();
+        console.log(p1Username);
+      })
+    const player2NameRef = ref(database,`rooms/${G_RoomId}/player2/name`);
+      onValue(player2NameRef, (snapshot) => {
+        p2Username = snapshot.val();
+        console.log(p2Username);
+        setMultiplayerUsernames(p1Username,p2Username);
+      })
+
+  }
+
   function createGuest(event) {
     if(event.key == "Enter"){
       saveGuestName();
@@ -308,6 +335,7 @@ let playerNum = "";
   }
 
   
+  document.getElementById("playButton").addEventListener("click", getPlayerNames);
   document.getElementById("playButton").addEventListener("click", getServerMove);
 
   // Side Navbar Functionality
@@ -472,8 +500,8 @@ let playerNum = "";
         <div id="two-player" class="player-option hidden">
           <p class="twoPlyrTitle">Two player</p>
           <p>Add player names:</p>
-          <input class="playerName" type="text" placeholder="Player 1" id="Player1" value="Player 1">
-          <input class="playerName" type="text" placeholder="Player 2" id="Player2" value="Player 2">
+          <input class="playerName" type="text" placeholder="Player 1" id="Player1">
+          <input class="playerName" type="text" placeholder="Player 2" id="Player2">
         </div>
       
         <div id="multi-player" class="player-option hidden">
