@@ -78,6 +78,7 @@ let playerNum = "";
   }
 
   function getPlayerNames() {
+    if(username == "") {return}
     let p1Username = ''
     let p2Username = ''
     const player1NameRef = ref(database,`rooms/${G_RoomId}/player1/name`);
