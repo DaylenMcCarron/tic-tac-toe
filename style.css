@@ -48,6 +48,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 
 .nav-item{
@@ -57,7 +58,8 @@ body {
 .nav-link, .nav-icon{
   display: flex;
   align-items: center;
-  height: 5rem;
+  height: 12vh;
+  max-height: 5rem;
   color:#F1F1F1;
   text-decoration:none;
   background: #435181;
