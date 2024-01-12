@@ -106,7 +106,7 @@ body {
 
 #profile-btn {
   position: relative;
-  right: 5rem
+  right: 2rem
 }
 
 .nav-icon svg:nth-child(2) {
@@ -289,27 +289,13 @@ transition: 500ms;
     h1{
       font-size: 3.5rem;
       margin-left: 3rem;
-      width: 70%;
+      width: 100%;
     }
-    .help-btn{
-      background-color: none;
-      border-style: solid;
-      border-radius: 1rem;
-      color:#ffffff;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      margin-right: 3rem;
-      cursor: pointer;
-      transition: 400ms ease;
-    }
-    .help-btn:hover{
-      background-color: #ffffff;
-      color:#161f3b;
-    }
+    
     .account-btn{
       width:3rem;
       height:3rem;
-      margin-left: 2rem;
+      margin-left: 1rem;
       cursor: pointer;
       border-radius: 5rem;
     }
@@ -593,7 +579,6 @@ body::-webkit-scrollbar-thumb{
     .headerStyle{
       display:flex;
       position: fixed;
-      width:100%;
       align-items: center;
       background: rgb(28,35,57);
       background-repeat:repeat;
@@ -613,17 +598,6 @@ body::-webkit-scrollbar-thumb{
       font-size: 1.9rem;
       margin-left: 2rem;
     }
-    .help-btn{
-      background-color: none;
-      border-style: solid;
-      border-radius: 1rem;
-      color:#ffffff;
-      padding-left: 0.3rem;
-      padding-right: 0.3rem;
-      cursor: pointer;
-      transition: 400ms ease;
-      margin-left: 1rem;
-    }
     .help-msg{
       font-size: 0.7rem;
     }
@@ -635,9 +609,6 @@ body::-webkit-scrollbar-thumb{
       margin-left: 1rem;
       cursor: pointer;
       border-radius: 5rem;
-    }
-    .help-btn{
-      margin-right: 2rem;
     }
 
 /*styling board*/
@@ -814,7 +785,7 @@ display: none;
     }
     #profile-btn {
       position: relative;
-      right: 0rem
+      right: 1rem
     }
 
   }

@@ -56,10 +56,19 @@ let pos = [];
 let playerNum = "";
 
 
+
     //Event Listeners
     document.getElementById("guestName").addEventListener("keydown", createGuest);
     document.getElementById("createRoom").addEventListener("click", createRoom);
 
+    function setMultiplayerUsernames(user1, user2) {
+      const player1 = document.getElementById('player-1');
+      const player2 = document.getElementById('player-2');
+
+      player1.innerHTML = user1;
+      player2.innerHTML = user2;
+      console.log(user1)
+    }
   
   function saveGuestName(event) {
     if (username == "") {
@@ -67,6 +76,25 @@ let playerNum = "";
         document.getElementById('displayUsername').innerHTML = `Welcome ${username}`;
     }
   }
+
+  function getPlayerNames() {
+    if(username == "") {return}
+    let p1Username = ''
+    let p2Username = ''
+    const player1NameRef = ref(database,`rooms/${G_RoomId}/player1/name`);
+      onValue(player1NameRef, (snapshot) => {
+        p1Username = snapshot.val();
+        console.log(p1Username);
+      })
+    const player2NameRef = ref(database,`rooms/${G_RoomId}/player2/name`);
+      onValue(player2NameRef, (snapshot) => {
+        p2Username = snapshot.val();
+        console.log(p2Username);
+        setMultiplayerUsernames(p1Username,p2Username);
+      })
+
+  }
+
   function createGuest(event) {
     if(event.key == "Enter"){
       saveGuestName();
@@ -308,6 +336,7 @@ let playerNum = "";
   }
 
   
+  document.getElementById("playButton").addEventListener("click", getPlayerNames);
   document.getElementById("playButton").addEventListener("click", getServerMove);
 
   // Side Navbar Functionality
@@ -421,9 +450,7 @@ let playerNum = "";
       <path d="M20.948 30.8356H16.0047C14.6358 44.4034 2.15601 44.9122 2.15601 44.9122V49.8184C16.1759 50.912 15.7766 63.4887 15.7766 63.4887L20.9594 63.428C21.3397 50.9386 34.2682 49.8184 34.2682 49.8184L34.1883 44.8439C20.9138 43.5794 20.948 30.8356 20.948 30.8356ZM18.3509 52.6056C17.347 49.0399 16.5333 48.2273 12.9627 47.2248C16.5333 46.2223 17.347 45.4097 18.3509 41.844C19.3547 45.4287 20.1533 46.2223 23.739 47.2248C20.1533 48.2273 19.3547 49.0399 18.3509 52.6056Z" fill="#CFC6FF"/>
     </svg>
     <h1>Tic Tac Toe</h1>
-    <div class="help-btn">
-        <p class="help-msg">Need Help?</p>
-    </div>
+    
     <div id="profile-btn">
         <svg class="account-btn" xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
             <circle cx="25.5" cy="25.5" r="25.5" fill="#B5A9C8"/>
@@ -472,8 +499,8 @@ let playerNum = "";
         <div id="two-player" class="player-option hidden">
           <p class="twoPlyrTitle">Two player</p>
           <p>Add player names:</p>
-          <input class="playerName" type="text" placeholder="Player 1" id="Player1" value="Player 1">
-          <input class="playerName" type="text" placeholder="Player 2" id="Player2" value="Player 2">
+          <input class="playerName" type="text" placeholder="Player 1" id="Player1">
+          <input class="playerName" type="text" placeholder="Player 2" id="Player2">
         </div>
       
         <div id="multi-player" class="player-option hidden">

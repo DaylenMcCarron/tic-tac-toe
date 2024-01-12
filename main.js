@@ -67,23 +67,27 @@ MultiPbtn.addEventListener('change', function() {
 document.getElementById("playButton").addEventListener("click", function(){
   if(TwoPbtn.checked){
     boardc.classList.toggle("moveRight");
-    p1value = p1.value;
-    p2value = p2.value;
     twoPlayer()
     players.classList.remove('hidden');
-    player1.innerHTML = p1value;
-    player2.innerHTML = p2value;
+    if (p1.value === '') {
+      player1.innerHTML = 'Player 1';
+    } else {
+      player1.innerHTML = p1.value;
+    }
+    if (p2.value === '') {
+      player2.innerHTML = 'Player 2';
+    } else {
+      player2.innerHTML = p2.value;
+    }
     wrapperShadow(false)
   }
 
   else if(SingPbtn.checked){
     boardc.classList.toggle("moveRight");
-    p1value = p1.value;
-    p2value = p2.value;
     onePlayer()
     players.classList.remove('hidden');
-    player1.innerHTML = p1value;
-    player2.innerHTML = p2value;
+    player1.innerHTML = 'Player 1';
+    player2.innerHTML = 'Computer';
     wrapperShadow(false)
   }
 
