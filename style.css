@@ -263,6 +263,7 @@ transition: 500ms;
     body::-webkit-scrollbar{
       width: 0.4 rem;
     }
+
     .nav-item:last-child{
       margin-top: auto;
     }
