@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 
+
+
 :root {
   --mark-size: calc(var(--cell-size) * .9);
   font-family: Montserrat;
@@ -24,11 +26,6 @@ body {
   background:#F1F1F1;
 }
 
-.playArea{
-  display:grid;
-  grid-template-columns: auto auto;
-  margin-top: 2rem;
-}
 
 
 
@@ -242,12 +239,19 @@ transition: 500ms;
     position: relative;
     z-index: 0;
   }
+  
 
 
 
   /* large screens */
   @media only screen and (min-width:600px){
 
+    
+.playArea{
+  display:grid;
+  grid-template-columns: auto auto;
+  margin-top: 2rem;
+}
     .navbar{
       width:5rem;
       height: 100vh;
@@ -282,6 +286,7 @@ transition: 500ms;
       position: absolute;
       z-index: 999;
       top:0;
+      width: 100%;
     }
     .logo{
       padding-left: 2rem;
@@ -578,10 +583,15 @@ body::-webkit-scrollbar-thumb{
   /* Small Screens */
   @media (max-width:768px){
 
+    .playArea{
+      grid-template-rows: auto;
+    }
+
+
     .navbar{
-      margin-top: 10rem;
       bottom:0;
       width:100vw;
+      height: 10vw;
       margin-left: 0;
       justify-content: center;
     }
@@ -607,6 +617,7 @@ body::-webkit-scrollbar-thumb{
       background: linear-gradient(180deg, rgba(28,35,57,1) 85%, rgba(39,49,85,0.1727284663865546) 100%);
       z-index: 999;
       top:0;
+      width: 100%;
     }
     .logo{
       padding-left: 2rem;
@@ -705,7 +716,7 @@ body::-webkit-scrollbar-thumb{
   font-family: Montserrat;
   max-width:2rem;
   position:absolute;
-  margin-top: 0.1rem;
+  margin-top: 5rem;
 }
 .modes svg{
   min-width: 0.8rem;
@@ -731,7 +742,7 @@ body::-webkit-scrollbar-thumb{
 .left-screen-options{
   width:26rem;
   border-radius: 2rem;
-  height: 24rem;
+  height: 30vh;
   position: relative;
 }
 
@@ -793,11 +804,21 @@ display: none;
       position: relative;
       right: 2rem
     }
+
+    
+    .playArea{
+      grid-template-rows: auto;
+    }
   }
   @media (max-width:383px){
     h1{
       font-size: 1.3rem;
     }
+    
+    .playArea{
+      grid-template-rows: auto;
+    }
+    
     
   }
   @media (max-width:335px){
@@ -808,13 +829,26 @@ display: none;
       position: relative;
       right: 1rem
     }
+    
+    .playArea{
+      grid-template-rows: auto;
+    }
 
   }
   @media (max-width:296px){
     :root{
       font-size: 0.8rem;
     }
+    
+    .playArea{
+      grid-template-rows: auto;
+    }
 
+  }
+
+  .right-screen{
+    display: flex;
+    justify-content: center;
   }
 
   .mp-button-holder {
