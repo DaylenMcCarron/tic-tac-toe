@@ -389,12 +389,6 @@ transition: 500ms;
   padding: 2rem;
 }
 
-.playernames {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
 
 .boardWrapper{
   top: 20%;
@@ -531,7 +525,6 @@ body::-webkit-scrollbar-thumb{
   font-family: Montserrat;
   font-size: 1.3rem;
   transition: 1s ease;
-  width: 150px;
 }
 .player-option{
   margin-left: 10rem;
@@ -586,6 +579,49 @@ body::-webkit-scrollbar-thumb{
     .playArea{
       grid-template-rows: auto;
     }
+    
+    .p1_board {
+      position: absolute;
+      background-color: #1D2338;
+      width: 18.5rem;
+      height: 3rem;
+      top: 100px;
+      box-shadow: inset 0px 0px 10px 5px rgba(255, 0, 0, 0.17);
+      border: white solid 1px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding-left: 1rem;
+      top: 5rem;
+      margin-left:-0.5rem;
+    }
+    .p2_board {
+      position: absolute;
+      background-color: #1D2338;
+      margin-top: 5rem;
+      width: 18.5rem;
+      height: 3rem;
+      border-radius: 20px;
+      border: white solid 1px;
+      box-shadow: inset 0px 0px 10px 5px rgba(0, 213, 255, 0.17);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding-left: 1rem;
+      margin-left:-0.5rem;
+    }
+    
+.plyr-X{
+  width: 20px;
+}
+.plyrO{
+  width: 20px;
+}
 
 
     .navbar{
@@ -742,7 +778,7 @@ body::-webkit-scrollbar-thumb{
 .left-screen-options{
   width:26rem;
   border-radius: 2rem;
-  height: 30vh;
+  height: 25vh;
   position: relative;
 }
 
@@ -772,7 +808,6 @@ display: none;
 
 .player1, .player2{
   color: #FFF;
-  font-size: 2rem;
   transition: 1s ease;
 }
 

@@ -150,6 +150,7 @@ function beforeGame() {
   document.getElementById("lso").style.display = "";
 }
 
+
 function twoPlayer() {
   xArray = [];
   yArray = [];
@@ -164,7 +165,8 @@ function twoPlayer() {
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
   document.getElementById("playButton").style.display = "none";
-  document.getElementById("lso").style.display = "none";
+  document.getElementById("mode").style.display = "none";
+  hideAllPlayerOptions();
 }
 
 function multiPlayer() {
@@ -179,7 +181,8 @@ function multiPlayer() {
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
   document.getElementById("playButton").style.display = "none";
-  document.getElementById("lso").style.display = "none";
+  document.getElementById("mode").style.display = "none";
+  hideAllPlayerOptions();
 }
 
 //One Player
@@ -196,7 +199,8 @@ function onePlayer() {
   setBoardHoverClass();
   winningMessageElement.classList.remove('show');
   document.getElementById("playButton").style.display = "none";
-  document.getElementById("lso").style.display = "none";
+  document.getElementById("mode").style.display = "none";
+  hideAllPlayerOptions();
 }
 
 
