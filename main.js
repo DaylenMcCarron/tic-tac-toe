@@ -125,7 +125,15 @@ function hideAllPlayerOptions() {
   });
 }
 
+function showAllPlayerOptions() {
+  playerOptions.forEach(option => {
+    option.classList.remove('hidden');
+  });
+}
+
 function beforeGame() {
+  document.getElementById("mode").style.display = "block";
+  showAllPlayerOptions();
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(CIRCLE_CLASS)
