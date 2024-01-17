@@ -837,7 +837,7 @@ display: none;
     }
     #profile-btn {
       position: relative;
-      right: 2rem
+      right: -2rem
     }
 
     
@@ -862,7 +862,7 @@ display: none;
     }
     #profile-btn {
       position: relative;
-      right: 1rem
+      right: -1rem
     }
     
     .playArea{
