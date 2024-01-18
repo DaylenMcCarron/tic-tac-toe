@@ -247,6 +247,8 @@ transition: 500ms;
   @media only screen and (min-width:600px){
 
     
+
+    
 .playArea{
   display:grid;
   grid-template-columns: auto auto;
@@ -560,17 +562,9 @@ body::-webkit-scrollbar-thumb{
     
   }
 
-
-
-
-
-
-
-
-
-
-
-
+  .hidden{
+    display: none;
+  }
 
 
   /* Small Screens */
