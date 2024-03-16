@@ -199,7 +199,6 @@ padding-left: 2.7rem;
 padding-right: 2.7rem;
 }
 #quitButton:hover, #restartButton:hover{
-padding:3rem;
 transition: 500ms;
 }
 
@@ -225,6 +224,9 @@ transition: 500ms;
   }
   .radio-ip:checked + .radio-lb svg{
     fill:#273155;
+  }
+  .radio-ip:hover + .radio-lb:hover{
+    box-shadow: 0rem 0rem 1rem #9bb4ff6c inset ;
   }
 
   .hidden{
@@ -291,6 +293,7 @@ transition: 500ms;
       width: 100%;
     }
     .logo{
+      height: 4rem;
       padding-left: 2rem;
       cursor: pointer;
     }
@@ -650,6 +653,7 @@ body::-webkit-scrollbar-thumb{
       width: 100%;
     }
     .logo{
+      height: 2rem;
       padding-left: 2rem;
       cursor: pointer;
       min-height: 1rem;
